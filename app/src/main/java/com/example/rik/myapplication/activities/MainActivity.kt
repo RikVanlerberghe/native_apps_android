@@ -86,6 +86,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 currentFragmentTag = fragmentName
             }
             "registreren" -> {
+                fragment = RegistreerFragment()
+                currentFragmentTag = fragmentName
+            }
+            "inloggen" -> {
                 fragment = InlogFragment()
                 currentFragmentTag = fragmentName
             }
@@ -120,8 +124,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_registreren -> {
                 goTo("registreren")
             }
-            R.id.nav_manage -> {
-
+            R.id.nav_inloggen -> {
+                goTo("inloggen")
             }
             R.id.nav_share -> {
 

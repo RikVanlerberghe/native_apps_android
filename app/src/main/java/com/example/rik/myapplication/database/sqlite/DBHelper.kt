@@ -120,6 +120,20 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
 
         return userList
     }
+
+    fun getUser(username: String, password: String): User{
+        getUsers().forEach({
+            u -> if (u.username == username) {
+            if (u.password == password) {
+                return u
+            }else{
+                return error("password is incorrect")
+            }
+        }else{
+           return error("username is incorrect")
+        } })
+        return error("something went wrong")
+    }
     // Access property for Context
     val Context.database: DBHelper
         get() = DBHelper.getInstance(applicationContext)

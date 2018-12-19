@@ -10,7 +10,8 @@ import com.example.rik.myapplication.activities.MainActivity
 import com.example.rik.myapplication.domain.models.User
 import kotlinx.android.synthetic.main.inloggen.*
 
-class InlogFragment: Fragment() {
+class RegistreerFragment : Fragment() {
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.inloggen, container, false)
@@ -21,13 +22,8 @@ class InlogFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         inloggen.setOnClickListener {
-            //TODO inloggen en savedinstancestate
-            try{
-                getMainActivity().db!!.getUser(username.text.toString(), password.text.toString())
-                getMainActivity().goTo("home")
-            }catch (e : Exception){
-
-            }
+            //TODO alle checks
+            getMainActivity().db!!.addUser(User(username.text.toString(), password.text.toString(), 0))
         }
     }
 
