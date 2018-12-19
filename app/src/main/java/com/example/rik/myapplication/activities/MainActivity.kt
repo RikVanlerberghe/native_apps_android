@@ -14,6 +14,7 @@ import com.example.rik.myapplication.database.sqlite.DBHelper
 import com.example.rik.myapplication.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.inloggen.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
 
         db = DBHelper(this)
+        //this.deleteDatabase("database")
 
         setSupportActionBar(toolbar)
         goTo("home")
@@ -83,6 +85,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragment = BalanceFragment()
                 currentFragmentTag = fragmentName
             }
+            "registreren" -> {
+                fragment = InlogFragment()
+                currentFragmentTag = fragmentName
+            }
         }
         switchFragment(addToBackStack, fragmentName, fragment)
     }
@@ -111,8 +117,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_balance -> {
                 goTo("balance")
             }
-            R.id.nav_slideshow -> {
-
+            R.id.nav_registreren -> {
+                goTo("registreren")
             }
             R.id.nav_manage -> {
 
