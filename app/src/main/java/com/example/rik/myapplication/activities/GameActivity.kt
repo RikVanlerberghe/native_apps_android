@@ -1,31 +1,43 @@
 package com.example.rik.myapplication.activities
 
 import android.os.Bundle
+import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem
 import com.example.rik.myapplication.R
-import com.example.rik.myapplication.fragments.BalanceFragment
-import com.example.rik.myapplication.fragments.BuyCardFragment
-import com.example.rik.myapplication.fragments.BuyDrinkFragment
-import com.example.rik.myapplication.fragments.HomeFragment
 import com.example.rik.myapplication.fragments.game.CreateGameFragment
 import com.example.rik.myapplication.fragments.game.GameFragment
-import com.example.rik.myapplication.fragments.inloggen.InlogFragment
-import com.example.rik.myapplication.fragments.inloggen.RegistreerFragment
 import com.example.rik.myapplication.fragments.settings.InfoFragment
 import com.example.rik.myapplication.fragments.settings.SettingsFragment
+
+import kotlinx.android.synthetic.main.activity_game.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_game.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 
 class GameActivity : AppCompatActivity() {
 
     private var currentFragmentTag: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-    }
 
+        setSupportActionBar(toolbar_game)
+        goTo("create_game")
+
+        val toggle = ActionBarDrawerToggle(
+            this, drawer_layout, toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
+        drawer_layout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        nav_view.setNavigationItemSelectedListener(this)
+    }
     fun goTo(fragmentName: String){
         val addToBackStack = true
         var fragment = Fragment()
@@ -45,7 +57,7 @@ class GameActivity : AppCompatActivity() {
                 fragment = CreateGameFragment()
                 currentFragmentTag = fragmentName
             }
-            "game" -> {
+            "play_game" -> {
                 fragment = GameFragment()
                 currentFragmentTag = fragmentName
             }
