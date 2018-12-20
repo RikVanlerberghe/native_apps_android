@@ -3,8 +3,10 @@ package com.example.rik.myapplication.activities
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
+import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu
 import android.view.MenuItem
 import com.example.rik.myapplication.R
 import com.example.rik.myapplication.fragments.game.CreateGameFragment
@@ -17,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_game.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
-class GameActivity : AppCompatActivity() {
+class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private var currentFragmentTag: String = ""
 
@@ -25,18 +27,18 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        setSupportActionBar(toolbar_game)
+        setSupportActionBar(toolbarGame)
         goTo("create_game")
 
         val toggle = ActionBarDrawerToggle(
-            this, drawer_layout, toolbar,
+            this, drawerLayout, toolbarGame,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
-        drawer_layout.addDrawerListener(toggle)
+        drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        nav_view.setNavigationItemSelectedListener(this)
+        navView.setNavigationItemSelectedListener(this)
     }
     fun goTo(fragmentName: String){
         val addToBackStack = true
@@ -77,6 +79,27 @@ class GameActivity : AppCompatActivity() {
                 goTo("settings_info")
             }
         }
+        return true
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Handle navigation view item clicks here.
+        when (item.itemId) {
+            R.id.nav_home -> {
+            }
+            R.id.nav_balance -> {
+            }
+            R.id.nav_registreren -> {
+            }
+            R.id.nav_inloggen -> {
+            }
+            R.id.nav_game -> {
+            }
+            R.id.nav_send -> {
+            }
+        }
+
+        drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 
