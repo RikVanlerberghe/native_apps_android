@@ -13,25 +13,25 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="Balance"/>
         <item
-                android:id="@+id/nav_registreren"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="Registreren"/>
+                android:id="@+id/nav_game"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Game"/>
         <item
-                android:id="@+id/nav_inloggen"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Inloggen"/>
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send"/>
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="inloggen">
         <menu>
             <item
-                    android:id="@+id/nav_share"
-                    android:icon="@drawable/ic_menu_share"
-                    android:title="Share"/>
+                    android:id="@+id/nav_registreren"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="Registreren"/>
             <item
-                    android:id="@+id/nav_send"
-                    android:icon="@drawable/ic_menu_send"
-                    android:title="Send"/>
+                    android:id="@+id/nav_inloggen"
+                    android:icon="@drawable/ic_menu_manage"
+                    android:title="Inloggen"/>
         </menu>
     </item>
 

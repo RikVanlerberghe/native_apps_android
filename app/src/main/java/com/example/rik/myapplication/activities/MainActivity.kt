@@ -1,7 +1,7 @@
 package com.example.rik.myapplication.activities
 
+import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
@@ -12,9 +12,13 @@ import android.view.MenuItem
 import com.example.rik.myapplication.R
 import com.example.rik.myapplication.database.sqlite.DBHelper
 import com.example.rik.myapplication.fragments.*
+import com.example.rik.myapplication.fragments.game.CreateGameFragment
+import com.example.rik.myapplication.fragments.inloggen.InlogFragment
+import com.example.rik.myapplication.fragments.inloggen.RegistreerFragment
+import com.example.rik.myapplication.fragments.settings.InfoFragment
+import com.example.rik.myapplication.fragments.settings.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.inloggen.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -61,16 +65,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var fragment = Fragment()
 
         when (fragmentName){
-            "settings" -> {
+            "settings_settings" -> {
                 fragment = SettingsFragment()
                 currentFragmentTag = fragmentName
             }
-            "info" -> {
+            "settings_info" -> {
                 fragment = InfoFragment()
-                currentFragmentTag = fragmentName
-            }
-            "home" -> {
-                fragment = HomeFragment()
                 currentFragmentTag = fragmentName
             }
             "buyCard" -> {
@@ -81,15 +81,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragment = BuyDrinkFragment()
                 currentFragmentTag = fragmentName
             }
+            //navigation menu
+            "home" -> {
+                fragment = HomeFragment()
+                currentFragmentTag = fragmentName
+            }
             "balance" -> {
                 fragment = BalanceFragment()
                 currentFragmentTag = fragmentName
             }
-            "registreren" -> {
+            "game" -> {
+                startActivity(Intent(this, GameActivity::class.java))
+                fragment = CreateGameFragment()
+                currentFragmentTag = fragmentName
+            }
+            "inloggen_registreren" -> {
                 fragment = RegistreerFragment()
                 currentFragmentTag = fragmentName
             }
-            "inloggen" -> {
+            "inloggen_inloggen" -> {
                 fragment = InlogFragment()
                 currentFragmentTag = fragmentName
             }
@@ -103,10 +113,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_settings -> {
-                goTo("settings")
+                goTo("settings_settings")
             }
             R.id.action_info -> {
-                goTo("info")
+                goTo("settings_info")
             }
         }
         return true
@@ -122,13 +132,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 goTo("balance")
             }
             R.id.nav_registreren -> {
-                goTo("registreren")
+                goTo("inloggen_registreren")
             }
             R.id.nav_inloggen -> {
-                goTo("inloggen")
+                goTo("inloggen_inloggen")
             }
-            R.id.nav_share -> {
-
+            R.id.nav_game -> {
+                goTo("game")
             }
             R.id.nav_send -> {
 
