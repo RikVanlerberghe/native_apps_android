@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.rik.myapplication.domain.models.Card
+import com.example.rik.myapplication.domain.models.Player
 import com.example.rik.myapplication.domain.models.User
 
 class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1) {
@@ -31,9 +32,13 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
     override fun onCreate(db: SQLiteDatabase?) {
         val CREATE_CARD_TABLE = "CREATE TABLE card " + "(id Integer PRIMARY KEY, numberOfDrinksLeft Integer)"
         val CREATE_USER_TABLE = "CREATE TABLE user " + "(username TEXT PRIMARY KEY, password TEXT, balance Integer)"
+        val CREATE_PLAYER_TABLE = "CREATE TABLE player " + "(name TEXT PRIMARY KEY, fifteen Integer, sixteen Integer, seventeen Integer, eighteen Integer, nineteen Integer, twenty Integer, bull Integer)"
         db!!.execSQL(CREATE_CARD_TABLE)
         db!!.execSQL(CREATE_USER_TABLE)
+        db!!.execSQL(CREATE_PLAYER_TABLE)
     }
+
+
 
     fun addUser(user: User): Boolean {
         val db = this.writableDatabase
@@ -55,9 +60,9 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
         return (Integer.parseInt("$_succes") != -1)
     }
 
-    fun deleteCard(id: String): Boolean {
+    fun deletePlayer(name: String): Boolean {
         val db = this.writableDatabase
-        val _succes = db.delete("card", "id" + "=?", arrayOf(id)).toLong()
+        val _succes = db.delete("player", "name" + "=?", arrayOf(name)).toLong()
         db.close()
         return Integer.parseInt("$_succes") != -1
     }
@@ -65,6 +70,13 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
     fun deleteUser(username: String): Boolean {
         val db = this.writableDatabase
         val _succes = db.delete("user", "username" + "=?", arrayOf(username)).toLong()
+        db.close()
+        return Integer.parseInt("$_succes") != -1
+    }
+
+    fun deleteCard(id: String): Boolean {
+        val db = this.writableDatabase
+        val _succes = db.delete("card", "id" + "=?", arrayOf(id)).toLong()
         db.close()
         return Integer.parseInt("$_succes") != -1
     }
@@ -97,6 +109,64 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
         db.close()
 
         return cardList
+    }
+
+    fun getPlayers(): ArrayList<Player>{
+        val playerList = ArrayList<Player>()
+        val db = readableDatabase
+        val SELECT_PLAYERS = "SELECT * FROM player"
+        val cursor = db.rawQuery(SELECT_PLAYERS,null)
+        if(cursor!=null){
+            if(cursor.moveToFirst()){
+                do{
+                    val player = Player()
+                    player.name = cursor.getString(cursor.getColumnIndex("name"))
+                    player.fifteen = cursor.getInt(cursor.getColumnIndex("fifteen"))
+                    player.sixteen = cursor.getInt(cursor.getColumnIndex("sixteen"))
+                    player.seventeen = cursor.getInt(cursor.getColumnIndex("seventeen"))
+                    player.eighteen = cursor.getInt(cursor.getColumnIndex("eighteen"))
+                    player.nineteen = cursor.getInt(cursor.getColumnIndex("nineteen"))
+                    player.twenty = cursor.getInt(cursor.getColumnIndex("twenty"))
+                    player.bull = cursor.getInt(cursor.getColumnIndex("bull"))
+                    playerList.add(player)
+                }while (cursor.moveToNext())
+            }
+        }
+        cursor.close()
+        db.close()
+
+        return playerList
+    }
+
+    fun addPlayer(player: Player): Boolean{
+        getPlayers().forEach({
+                u -> if (u.name == player.name) {
+            return error("player allready exists")
+            }
+        })
+            val db = this.writableDatabase
+            val values = ContentValues()
+            values.put("name", player.name)
+            values.put("fifteen", player.fifteen)
+            values.put("sixteen", player.sixteen)
+            values.put("seventeen", player.seventeen)
+            values.put("eighteen", player.eighteen)
+            values.put("nineteen", player.nineteen)
+            values.put("twenty", player.twenty)
+            values.put("bull", player.bull)
+            val _succes = db.insert("player", null, values)
+            db.close()
+            return (Integer.parseInt("$_succes") != -1)
+    }
+
+    fun getPlayer(name: String): Player{
+        getPlayers().forEach({
+                u -> if (u.name == name) {
+                    return u
+                }
+            return error("player does not exist")
+        })
+        return error("players can not be reached")
     }
 
     fun getUsers(): ArrayList<User>{

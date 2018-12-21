@@ -12,10 +12,12 @@ import android.view.MenuItem
 import com.example.rik.myapplication.R
 import com.example.rik.myapplication.R.id.navHome
 import com.example.rik.myapplication.R.id.nav_home
+import com.example.rik.myapplication.database.sqlite.DBHelper
 import com.example.rik.myapplication.fragments.BalanceFragment
 import com.example.rik.myapplication.fragments.HomeFragment
 import com.example.rik.myapplication.fragments.game.CreateGameFragment
 import com.example.rik.myapplication.fragments.game.GameFragment
+import com.example.rik.myapplication.fragments.game.SelectPlayerFragment
 import com.example.rik.myapplication.fragments.settings.InfoFragment
 import com.example.rik.myapplication.fragments.settings.SettingsFragment
 
@@ -27,10 +29,13 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private var currentFragmentTag: String = ""
+    var db : DBHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        db = DBHelper(this)
 
         setSupportActionBar(toolbarGame)
         goTo("create_game")
@@ -82,6 +87,10 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             "play_game" -> {
                 fragment = GameFragment()
+                currentFragmentTag = fragmentName
+            }
+            "select_players" ->{
+                fragment = SelectPlayerFragment()
                 currentFragmentTag = fragmentName
             }
         }

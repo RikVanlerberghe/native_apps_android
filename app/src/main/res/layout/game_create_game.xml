@@ -26,7 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/players"/>
+            app:layout_constraintBottom_toTopOf="@+id/players" app:layout_constraintHorizontal_bias="0.502"/>
     <Button
             android:id="@+id/start_game"
             android:text="Button"
@@ -58,5 +58,15 @@
             app:layout_constraintTop_toBottomOf="@+id/players"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+    <Button
+            android:id="@+id/add_from_list"
+            android:text="Button"
+            android:layout_width="43dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/players"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.416" app:layout_constraintHorizontal_bias="0.444"/>
 
 </android.support.constraint.ConstraintLayout>
