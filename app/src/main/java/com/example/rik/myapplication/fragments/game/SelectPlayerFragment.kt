@@ -3,6 +3,8 @@ package com.example.rik.myapplication.fragments.game
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +13,9 @@ import com.example.rik.myapplication.R.id.players
 import com.example.rik.myapplication.activities.GameActivity
 import com.example.rik.myapplication.adapters.game.PlayerAdapter
 import com.example.rik.myapplication.domain.models.Player
+import com.example.rik.myapplication.interfaces.game.SwipeToDelete
 import kotlinx.android.synthetic.main.game_create_game.*
+import kotlinx.android.synthetic.main.game_player_item.view.*
 
 class SelectPlayerFragment: Fragment() {
     private lateinit var adapterList: MutableList<String>
@@ -27,6 +31,21 @@ class SelectPlayerFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         makeRecyclerList()
+
+        val swipeHandler = object : SwipeToDelete(context) {
+            override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
+                try{
+                    getMainActivity().db!!.deletePlayer(adapterList.get(p0.adapterPosition))
+                }catch (e: Exception){
+                    //TODO exception aanvullen
+                }
+                adapter.removeAt(p0.adapterPosition)
+                editAdapterList()
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeHandler)
+        itemTouchHelper.attachToRecyclerView(players)
 
     }
 
