@@ -1,5 +1,6 @@
 package com.example.rik.myapplication.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -9,6 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import com.example.rik.myapplication.R
+import com.example.rik.myapplication.R.id.navHome
+import com.example.rik.myapplication.R.id.nav_home
+import com.example.rik.myapplication.fragments.BalanceFragment
+import com.example.rik.myapplication.fragments.HomeFragment
 import com.example.rik.myapplication.fragments.game.CreateGameFragment
 import com.example.rik.myapplication.fragments.game.GameFragment
 import com.example.rik.myapplication.fragments.settings.InfoFragment
@@ -52,6 +57,15 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var fragment = Fragment()
 
         when (fragmentName){
+            //menu
+            "home" -> {
+                startActivity(Intent(this, MainActivity::class.java))
+                return
+            }
+            "balance" -> {
+                fragment = BalanceFragment ()
+                currentFragmentTag = fragmentName
+            }
             //settings
             "settings_settings" -> {
                 fragment = SettingsFragment()
@@ -92,9 +106,11 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_home -> {
+            navHome -> {
+                goTo("home")
             }
             R.id.nav_balance -> {
+                goTo("balance")
             }
             R.id.nav_registreren -> {
             }
@@ -106,7 +122,7 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
-        drawer_layout.closeDrawer(GravityCompat.START)
+        drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 

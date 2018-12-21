@@ -12,6 +12,7 @@ import android.view.MenuItem
 import com.example.rik.myapplication.R
 import com.example.rik.myapplication.database.sqlite.DBHelper
 import com.example.rik.myapplication.fragments.*
+import com.example.rik.myapplication.fragments.game.GameFragment
 import com.example.rik.myapplication.fragments.inloggen.InlogFragment
 import com.example.rik.myapplication.fragments.inloggen.RegistreerFragment
 import com.example.rik.myapplication.fragments.settings.InfoFragment
@@ -91,6 +92,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             "game" -> {
                 startActivity(Intent(this, GameActivity::class.java))
+                return
             }
             "inloggen_registreren" -> {
                 fragment = RegistreerFragment()

@@ -7,14 +7,14 @@
         android:layout_height="match_parent"
         tools:context=".fragments.game.CreateGameFragment">
 
-<android.support.v7.widget.RecyclerView
+    <android.support.v7.widget.RecyclerView
             android:id="@+id/players"
             android:layout_width="323dp"
-            android:layout_height="259dp"
+            android:layout_height="180dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title"
-            app:layout_constraintBottom_toTopOf="@+id/start_game">
+            app:layout_constraintBottom_toTopOf="@+id/player_name">
     </android.support.v7.widget.RecyclerView>
 
     <TextView
@@ -33,6 +33,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_player"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+            android:id="@+id/add_player"
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/start_game"
+            app:layout_constraintTop_toBottomOf="@+id/player_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+            android:id="@+id/player_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:ems="10"
+            app:layout_constraintBottom_toTopOf="@+id/add_player"
             app:layout_constraintTop_toBottomOf="@+id/players"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
