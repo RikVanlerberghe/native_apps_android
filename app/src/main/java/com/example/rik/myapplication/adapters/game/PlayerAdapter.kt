@@ -6,6 +6,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.rik.myapplication.R
+import com.example.rik.myapplication.activities.GameActivity
+import com.example.rik.myapplication.domain.models.Player
+import com.example.rik.myapplication.fragments.game.SelectPlayerFragment
 import com.example.rik.myapplication.viewHolders.game.PlayerViewHolder
 
 class PlayerAdapter (internal var context: Context, internal var fragment: Fragment,
@@ -29,5 +32,13 @@ class PlayerAdapter (internal var context: Context, internal var fragment: Fragm
     override fun onBindViewHolder(holderCreate: PlayerViewHolder, position: Int) {
         var member = playerList[position]
         holderCreate.playerName.text = member
+
+        holderCreate.itemView.setOnClickListener{
+            run {
+                var activity = fragment.activity as GameActivity
+                //TODO player uit db halen, mag geen nieuwe zijn + mag enkel in selectPlayerFragment
+                activity.addPlayerToGroup(Player(playerList[position]))
+            }
+        }
     }
 }

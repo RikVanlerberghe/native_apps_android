@@ -141,6 +141,9 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     fun setGroup(group: ArrayList<Player>){
         this.group = group
     }
+    fun addPlayerToGroup(player: Player){
+        this.group.add(player)
+    }
 
     private fun switchFragment(addToBackStack: Boolean, fragmentTag: String, fragment: Fragment) {
         val trans = supportFragmentManager.beginTransaction().replace(R.id.fragment_container,fragment, fragmentTag)
