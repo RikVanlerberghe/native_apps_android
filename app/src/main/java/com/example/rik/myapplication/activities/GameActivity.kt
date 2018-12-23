@@ -13,6 +13,7 @@ import com.example.rik.myapplication.R
 import com.example.rik.myapplication.R.id.navHome
 import com.example.rik.myapplication.R.id.nav_home
 import com.example.rik.myapplication.database.sqlite.DBHelper
+import com.example.rik.myapplication.domain.models.Player
 import com.example.rik.myapplication.fragments.BalanceFragment
 import com.example.rik.myapplication.fragments.HomeFragment
 import com.example.rik.myapplication.fragments.game.CreateGameFragment
@@ -30,6 +31,7 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private var currentFragmentTag: String = ""
     var db : DBHelper? = null
+    private var group: ArrayList<Player> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,6 +135,11 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    fun getGroup() = group
+    fun setGroup(group: ArrayList<Player>){
+        this.group = group
     }
 
     private fun switchFragment(addToBackStack: Boolean, fragmentTag: String, fragment: Fragment) {

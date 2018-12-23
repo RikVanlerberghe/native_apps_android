@@ -18,8 +18,10 @@ import kotlinx.android.synthetic.main.game_create_game.*
 import kotlinx.android.synthetic.main.game_player_item.view.*
 
 class SelectPlayerFragment: Fragment() {
+
     private lateinit var adapterList: MutableList<String>
     private lateinit var adapter: PlayerAdapter
+    private lateinit var group: ArrayList<Player>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment

@@ -20,10 +20,14 @@ class CreateGameFragment: Fragment() {
 
     private lateinit var adapterList: MutableList<String>
     private lateinit var adapter: PlayerAdapter
+    private lateinit var group: ArrayList<Player>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.game_create_game, container, false)
+
+        group = getMainActivity().getGroup()
+
         return view
     }
 
@@ -41,6 +45,8 @@ class CreateGameFragment: Fragment() {
             try{
                 getMainActivity().db!!.addPlayer(Player(player_name.text.toString()))
                 adapterList.add(player_name.text.toString())
+                group.add(Player(player_name.text.toString()))
+                getMainActivity().setGroup(group)
             }catch (e: Exception){//TODO set error textView
                 error("logisch dat nie werkt waer")
             }
@@ -54,7 +60,9 @@ class CreateGameFragment: Fragment() {
 
         val swipeHandler = object : SwipeToDelete(context) {
             override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
-                adapter.removeAt(p0.adapterPosition)
+                adapterList.removeAt(p0.adapterPosition)
+                group.removeAt(p0.adapterPosition)
+                getMainActivity().setGroup(group)
                 editAdapterList()
             }
         }
@@ -64,7 +72,7 @@ class CreateGameFragment: Fragment() {
     }
 
     private fun makeRecyclerList() {
-        adapterList = ArrayList()
+        adapterList = groupToAdapterList()
         adapter = PlayerAdapter(context!!, this, adapterList)
         players.adapter = adapter
         players.layoutManager = LinearLayoutManager(context)
@@ -75,6 +83,16 @@ class CreateGameFragment: Fragment() {
         adapter.notifyDataSetChanged()
         players.setHasFixedSize(true)
         players.layoutManager = LinearLayoutManager(context)
+    }
+
+    private fun groupToAdapterList(): MutableList<String>{
+        var playerNames : MutableList<String> = ArrayList()
+
+        group.forEach {
+            player -> playerNames.add(player.name)
+        }
+
+        return playerNames
     }
 
     private fun getMainActivity(): GameActivity {
