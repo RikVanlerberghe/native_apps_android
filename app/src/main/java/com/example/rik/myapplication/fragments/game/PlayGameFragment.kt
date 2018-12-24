@@ -2,6 +2,8 @@ package com.example.rik.myapplication.fragments.game
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,8 @@ import com.example.rik.myapplication.R
 import com.example.rik.myapplication.activities.GameActivity
 import com.example.rik.myapplication.adapters.game.PlayGameAdapter
 import com.example.rik.myapplication.domain.models.Player
+import kotlinx.android.synthetic.main.game_create_game.*
+import kotlinx.android.synthetic.main.game_play_game.*
 
 class PlayGameFragment:Fragment() {
 
@@ -29,6 +33,7 @@ class PlayGameFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
     }
 
     private fun makeRecyclerList() {
@@ -37,6 +42,9 @@ class PlayGameFragment:Fragment() {
             adapterList.add(player.name)
         }
         adapter = PlayGameAdapter(context!!, this, adapterList)
+        scorebord.adapter = adapter
+        //TODO werkt nog niet
+        scorebord.layoutManager = LinearLayoutManager(context)
     }
 
     private fun getMainActivity(): GameActivity {
