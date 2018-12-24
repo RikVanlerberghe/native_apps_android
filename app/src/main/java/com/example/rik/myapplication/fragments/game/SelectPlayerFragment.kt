@@ -9,18 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.rik.myapplication.R
-import com.example.rik.myapplication.R.id.players
 import com.example.rik.myapplication.activities.GameActivity
-import com.example.rik.myapplication.adapters.game.PlayerAdapter
+import com.example.rik.myapplication.adapters.game.SelectPlayerAdapter
+import com.example.rik.myapplication.interfaces.game.PlayerAdapterInterface
 import com.example.rik.myapplication.domain.models.Player
-import com.example.rik.myapplication.interfaces.game.SwipeToDelete
+import com.example.rik.myapplication.interfaces.game.SwipeToDeleteInterface
 import kotlinx.android.synthetic.main.game_create_game.*
-import kotlinx.android.synthetic.main.game_player_item.view.*
 
 class SelectPlayerFragment: Fragment() {
 
     private lateinit var adapterList: MutableList<String>
-    private lateinit var adapter: PlayerAdapter
+    private lateinit var adapterInterface: SelectPlayerAdapter
     private lateinit var group: ArrayList<Player>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -34,14 +33,14 @@ class SelectPlayerFragment: Fragment() {
 
         makeRecyclerList()
 
-        val swipeHandler = object : SwipeToDelete(context) {
+        val swipeHandler = object : SwipeToDeleteInterface(context) {
             override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
                 try{
                     getMainActivity().db!!.deletePlayer(adapterList.get(p0.adapterPosition))
                 }catch (e: Exception){
                     //TODO exception aanvullen
                 }
-                adapter.removeAt(p0.adapterPosition)
+                adapterInterface.removeAt(p0.adapterPosition)
                 editAdapterList()
             }
         }
@@ -56,14 +55,14 @@ class SelectPlayerFragment: Fragment() {
         getMainActivity().db!!.getPlayers().forEach { player ->
             adapterList.add(player.name)
         }
-        adapter = PlayerAdapter(context!!, this, adapterList)
-        players.adapter = adapter
+        adapterInterface = SelectPlayerAdapter(context!!, this, adapterList)
+        players.adapter = adapterInterface
         players.layoutManager = LinearLayoutManager(context)
     }
 
     private fun editAdapterList() {
-        players.adapter = adapter
-        adapter.notifyDataSetChanged()
+        players.adapter = adapterInterface
+        adapterInterface.notifyDataSetChanged()
         players.setHasFixedSize(true)
         players.layoutManager = LinearLayoutManager(context)
     }

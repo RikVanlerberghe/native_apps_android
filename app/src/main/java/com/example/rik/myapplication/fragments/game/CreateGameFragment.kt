@@ -10,16 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.rik.myapplication.R
 import com.example.rik.myapplication.activities.GameActivity
-import com.example.rik.myapplication.adapters.game.PlayerAdapter
+import com.example.rik.myapplication.adapters.game.CreateGameAdapter
 import com.example.rik.myapplication.domain.models.Player
-import com.example.rik.myapplication.interfaces.game.SwipeToDelete
+import com.example.rik.myapplication.interfaces.game.SwipeToDeleteInterface
 import kotlinx.android.synthetic.main.game_create_game.*
 import java.lang.Exception
 
 class CreateGameFragment: Fragment() {
 
     private lateinit var adapterList: MutableList<String>
-    private lateinit var adapter: PlayerAdapter
+    private lateinit var adapter: CreateGameAdapter
     private lateinit var group: ArrayList<Player>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -58,7 +58,7 @@ class CreateGameFragment: Fragment() {
             getMainActivity().goTo("play_game")
         }
 
-        val swipeHandler = object : SwipeToDelete(context) {
+        val swipeHandler = object : SwipeToDeleteInterface(context) {
             override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
                 adapterList.removeAt(p0.adapterPosition)
                 group.removeAt(p0.adapterPosition)
@@ -73,7 +73,7 @@ class CreateGameFragment: Fragment() {
 
     private fun makeRecyclerList() {
         adapterList = groupToAdapterList()
-        adapter = PlayerAdapter(context!!, this, adapterList)
+        adapter = CreateGameAdapter(context!!, this, adapterList)
         players.adapter = adapter
         players.layoutManager = LinearLayoutManager(context)
     }

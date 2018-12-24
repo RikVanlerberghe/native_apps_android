@@ -164,9 +164,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
                 u -> if (u.name == name) {
                     return u
                 }
-            return error("player does not exist")
         })
-        return error("players can not be reached")
+        return error("player does not exist")
     }
 
     fun getUsers(): ArrayList<User>{
