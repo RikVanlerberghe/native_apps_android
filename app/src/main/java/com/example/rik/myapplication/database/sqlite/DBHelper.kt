@@ -161,6 +161,23 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
             return (Integer.parseInt("$_succes") != -1)
     }
 
+    fun updatePlayer(player: Player): Boolean{
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put("name", player.name)
+        values.put("fifteen", player.fifteen)
+        values.put("sixteen", player.sixteen)
+        values.put("seventeen", player.seventeen)
+        values.put("eighteen", player.eighteen)
+        values.put("nineteen", player.nineteen)
+        values.put("twenty", player.twenty)
+        values.put("bull", player.bull)
+        values.put("score", player.score)
+        val _succes = db.update("player", values, "name" + "=?", arrayOf(player.name)).toLong()
+        db.close()
+        return Integer.parseInt("$_succes") != -1
+    }
+
     fun getPlayer(name: String): Player{
         getPlayers().forEach({
                 u -> if (u.name == name) {

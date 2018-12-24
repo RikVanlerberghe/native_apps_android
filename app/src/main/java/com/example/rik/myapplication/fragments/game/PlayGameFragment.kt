@@ -11,6 +11,7 @@ import com.example.rik.myapplication.activities.GameActivity
 import com.example.rik.myapplication.adapters.game.PlayGameAdapter
 import com.example.rik.myapplication.domain.models.Player
 import kotlinx.android.synthetic.main.game_play_game.*
+import kotlinx.android.synthetic.main.game_scorebord_item.*
 
 class PlayGameFragment:Fragment() {
 
