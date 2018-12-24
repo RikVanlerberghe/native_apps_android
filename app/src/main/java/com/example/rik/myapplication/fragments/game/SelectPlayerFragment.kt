@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import com.example.rik.myapplication.R
 import com.example.rik.myapplication.activities.GameActivity
 import com.example.rik.myapplication.adapters.game.SelectPlayerAdapter
-import com.example.rik.myapplication.interfaces.game.PlayerAdapterInterface
 import com.example.rik.myapplication.domain.models.Player
 import com.example.rik.myapplication.interfaces.game.SwipeToDeleteInterface
 import kotlinx.android.synthetic.main.game_create_game.*
@@ -19,8 +18,7 @@ import kotlinx.android.synthetic.main.game_create_game.*
 class SelectPlayerFragment: Fragment() {
 
     private lateinit var adapterList: MutableList<String>
-    private lateinit var adapterInterface: SelectPlayerAdapter
-    private lateinit var group: ArrayList<Player>
+    private lateinit var adapter: SelectPlayerAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -40,7 +38,7 @@ class SelectPlayerFragment: Fragment() {
                 }catch (e: Exception){
                     //TODO exception aanvullen
                 }
-                adapterInterface.removeAt(p0.adapterPosition)
+                adapter.removeAt(p0.adapterPosition)
                 editAdapterList()
             }
         }
@@ -55,14 +53,14 @@ class SelectPlayerFragment: Fragment() {
         getMainActivity().db!!.getPlayers().forEach { player ->
             adapterList.add(player.name)
         }
-        adapterInterface = SelectPlayerAdapter(context!!, this, adapterList)
-        players.adapter = adapterInterface
+        adapter = SelectPlayerAdapter(context!!, this, adapterList)
+        players.adapter = adapter
         players.layoutManager = LinearLayoutManager(context)
     }
 
     private fun editAdapterList() {
-        players.adapter = adapterInterface
-        adapterInterface.notifyDataSetChanged()
+        players.adapter = adapter
+        adapter.notifyDataSetChanged()
         players.setHasFixedSize(true)
         players.layoutManager = LinearLayoutManager(context)
     }

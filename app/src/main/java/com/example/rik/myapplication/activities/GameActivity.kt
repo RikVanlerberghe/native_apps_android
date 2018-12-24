@@ -11,21 +11,17 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.rik.myapplication.R
 import com.example.rik.myapplication.R.id.navHome
-import com.example.rik.myapplication.R.id.nav_home
 import com.example.rik.myapplication.database.sqlite.DBHelper
 import com.example.rik.myapplication.domain.models.Player
 import com.example.rik.myapplication.fragments.BalanceFragment
-import com.example.rik.myapplication.fragments.HomeFragment
 import com.example.rik.myapplication.fragments.game.CreateGameFragment
-import com.example.rik.myapplication.fragments.game.GameFragment
+import com.example.rik.myapplication.fragments.game.PlayGameFragment
 import com.example.rik.myapplication.fragments.game.SelectPlayerFragment
 import com.example.rik.myapplication.fragments.settings.InfoFragment
 import com.example.rik.myapplication.fragments.settings.SettingsFragment
 
 import kotlinx.android.synthetic.main.activity_game.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_game.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 
 class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -88,7 +84,7 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 currentFragmentTag = fragmentName
             }
             "play_game" -> {
-                fragment = GameFragment()
+                fragment = PlayGameFragment()
                 currentFragmentTag = fragmentName
             }
             "select_players" ->{
@@ -142,6 +138,12 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         this.group = group
     }
     fun addPlayerToGroup(player: Player){
+        group.forEach {p ->
+            if(p.name.equals(player.name)){
+                //TODO opvangen
+                return
+            }
+        }
         this.group.add(player)
     }
 
