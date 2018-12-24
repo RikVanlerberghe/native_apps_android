@@ -34,6 +34,13 @@ class SelectPlayerFragment: Fragment() {
         val swipeHandler = object : SwipeToDeleteInterface(context) {
             override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
                 try{
+                    getMainActivity().getGroup().forEach {p ->
+                        if(p.name.equals(adapterList.get(p0.adapterPosition))){
+                            //TODO errorview maken
+                            editAdapterList()
+                            return
+                        }
+                    }
                     getMainActivity().db!!.deletePlayer(adapterList.get(p0.adapterPosition))
                 }catch (e: Exception){
                     //TODO exception aanvullen
