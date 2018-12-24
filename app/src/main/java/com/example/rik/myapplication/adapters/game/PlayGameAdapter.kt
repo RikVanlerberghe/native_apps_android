@@ -23,14 +23,14 @@ class PlayGameAdapter(internal var context: Context,
     override fun onBindViewHolder(holderCreate: PlayGameViewHolder, position: Int) {
         var member = playerList[position]
 
-        holderCreate.fifteen.text = "15"
-        holderCreate.sixteen.text = "15"
-        holderCreate.seventeen.text = "15"
-        holderCreate.eighteen.text = "15"
-        holderCreate.nineteen.text = "15"
-        holderCreate.twenty.text = "15"
-        holderCreate.bull.text = "15"
-        holderCreate.score.text = "15"
+        holderCreate.fifteen.text = member.fifteen.toString()
+        holderCreate.sixteen.text = member.sixteen.toString()
+        holderCreate.seventeen.text = member.seventeen.toString()
+        holderCreate.eighteen.text = member.eighteen.toString()
+        holderCreate.nineteen.text = member.nineteen.toString()
+        holderCreate.twenty.text = member.twenty.toString()
+        holderCreate.bull.text = member.bull.toString()
+        holderCreate.score.text = member.score.toString()
         holderCreate.name.text = member.name
 
     }

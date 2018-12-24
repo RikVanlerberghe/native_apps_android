@@ -32,7 +32,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
     override fun onCreate(db: SQLiteDatabase?) {
         val CREATE_CARD_TABLE = "CREATE TABLE card " + "(id Integer PRIMARY KEY, numberOfDrinksLeft Integer)"
         val CREATE_USER_TABLE = "CREATE TABLE user " + "(username TEXT PRIMARY KEY, password TEXT, balance Integer)"
-        val CREATE_PLAYER_TABLE = "CREATE TABLE player " + "(name TEXT PRIMARY KEY, fifteen Integer, sixteen Integer, seventeen Integer, eighteen Integer, nineteen Integer, twenty Integer, bull Integer)"
+        val CREATE_PLAYER_TABLE = "CREATE TABLE player " + "(name TEXT PRIMARY KEY, fifteen Integer, sixteen Integer, seventeen Integer, eighteen Integer, nineteen Integer, twenty Integer, bull Integer, score Integer)"
         db!!.execSQL(CREATE_CARD_TABLE)
         db!!.execSQL(CREATE_USER_TABLE)
         db!!.execSQL(CREATE_PLAYER_TABLE)
@@ -128,6 +128,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
                     player.nineteen = cursor.getInt(cursor.getColumnIndex("nineteen"))
                     player.twenty = cursor.getInt(cursor.getColumnIndex("twenty"))
                     player.bull = cursor.getInt(cursor.getColumnIndex("bull"))
+                    player.score = cursor.getInt(cursor.getColumnIndex("score"))
                     playerList.add(player)
                 }while (cursor.moveToNext())
             }
@@ -154,6 +155,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
             values.put("nineteen", player.nineteen)
             values.put("twenty", player.twenty)
             values.put("bull", player.bull)
+            values.put("score", player.score)
             val _succes = db.insert("player", null, values)
             db.close()
             return (Integer.parseInt("$_succes") != -1)
