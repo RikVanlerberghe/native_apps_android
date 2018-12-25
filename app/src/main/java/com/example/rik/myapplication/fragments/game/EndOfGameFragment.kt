@@ -29,6 +29,22 @@ class EndOfGameFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         title.text = winner.name + " won the game!!!"
+
+        reset_players.setOnClickListener {
+            group.forEach { player ->
+                player.score = 0
+                player.fifteen =0
+                player.sixteen = 0
+                player.seventeen =0
+                player.eighteen = 0
+                player.nineteen =0
+                player.twenty = 0
+                player.bull =0
+                getMainActivity().db!!.updatePlayer(player)
+
+                getMainActivity().goTo("create_game")
+            }
+        }
     }
 
     private fun getMainActivity(): GameActivity {

@@ -1,6 +1,7 @@
 package com.example.rik.myapplication.fragments.game
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -47,8 +48,8 @@ class CreateGameFragment: Fragment() {
                 adapterList.add(player_name.text.toString())
                 group.add(Player(player_name.text.toString()))
                 getMainActivity().setGroup(group)
-            }catch (e: Exception){//TODO set error textView
-                error("logisch dat nie werkt waer")
+            }catch (e: Exception){
+                Snackbar.make(view, "this player already exist", Snackbar.LENGTH_LONG).show()
             }
             player_name.setText("")
             editAdapterList()

@@ -3,6 +3,7 @@ package com.example.rik.myapplication.activities
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -151,8 +152,7 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     fun addPlayerToGroup(player: Player){
         group.forEach {p ->
             if(p.name.equals(player.name)){
-                //TODO opvangen
-                return
+                error("this player is already in the game")
             }
         }
         this.group.add(player)

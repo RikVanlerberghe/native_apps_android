@@ -1,6 +1,7 @@
 package com.example.rik.myapplication.fragments.game
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -36,14 +37,14 @@ class SelectPlayerFragment: Fragment() {
                 try{
                     getMainActivity().getGroup().forEach {p ->
                         if(p.name.equals(adapterList.get(p0.adapterPosition))){
-                            //TODO errorview maken
+                            Snackbar.make(view, "this player is about to play a game, so he can't be deleted", Snackbar.LENGTH_LONG).show()
                             editAdapterList()
                             return
                         }
                     }
                     getMainActivity().db!!.deletePlayer(adapterList.get(p0.adapterPosition))
                 }catch (e: Exception){
-                    //TODO exception aanvullen
+                    Snackbar.make(view, "this player can't be deleted", Snackbar.LENGTH_LONG).show()
                 }
                 adapter.removeAt(p0.adapterPosition)
                 editAdapterList()
