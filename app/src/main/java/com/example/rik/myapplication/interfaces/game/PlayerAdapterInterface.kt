@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.rik.myapplication.R
-import com.example.rik.myapplication.activities.GameActivity
 import com.example.rik.myapplication.viewHolders.game.PlayerViewHolder
 
 open class PlayerAdapterInterface (internal var context: Context, internal var fragment: Fragment,
@@ -14,7 +13,7 @@ open class PlayerAdapterInterface (internal var context: Context, internal var f
     : RecyclerView.Adapter<PlayerViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.game_player_item, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.game_item_player, parent, false)
         return PlayerViewHolder(itemView)
     }
 

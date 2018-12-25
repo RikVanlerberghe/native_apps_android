@@ -2,7 +2,7 @@ package com.example.rik.myapplication.viewHolders.game
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import kotlinx.android.synthetic.main.game_scorebord_item.view.*
+import kotlinx.android.synthetic.main.game_item_scorebord.view.*
 
 class PlayGameViewHolder (itemView: View): RecyclerView.ViewHolder(itemView) {
     val name = itemView.name

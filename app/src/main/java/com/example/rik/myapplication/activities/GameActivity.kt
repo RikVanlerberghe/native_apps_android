@@ -15,6 +15,7 @@ import com.example.rik.myapplication.database.sqlite.DBHelper
 import com.example.rik.myapplication.domain.models.Player
 import com.example.rik.myapplication.fragments.BalanceFragment
 import com.example.rik.myapplication.fragments.game.CreateGameFragment
+import com.example.rik.myapplication.fragments.game.EndOfGameFragment
 import com.example.rik.myapplication.fragments.game.PlayGameFragment
 import com.example.rik.myapplication.fragments.game.SelectPlayerFragment
 import com.example.rik.myapplication.fragments.settings.InfoFragment
@@ -28,6 +29,7 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var currentFragmentTag: String = ""
     var db : DBHelper? = null
     private var group: ArrayList<Player> = ArrayList()
+    private lateinit var winner: Player
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,8 +89,12 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragment = PlayGameFragment()
                 currentFragmentTag = fragmentName
             }
-            "select_players" ->{
+            "select_players" -> {
                 fragment = SelectPlayerFragment()
+                currentFragmentTag = fragmentName
+            }
+            "end_of_game" -> {
+                fragment = EndOfGameFragment()
                 currentFragmentTag = fragmentName
             }
         }
@@ -134,9 +140,14 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun getGroup() = group
+    fun getWinner() = winner
     fun setGroup(group: ArrayList<Player>){
         this.group = group
     }
+    fun setWinner(player: Player){
+        this.winner = player
+    }
+
     fun addPlayerToGroup(player: Player){
         group.forEach {p ->
             if(p.name.equals(player.name)){

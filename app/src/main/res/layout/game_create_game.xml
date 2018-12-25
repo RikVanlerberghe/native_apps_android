@@ -26,7 +26,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/players" app:layout_constraintHorizontal_bias="0.502"/>
+            app:layout_constraintBottom_toTopOf="@+id/players"
+            app:layout_constraintHorizontal_bias="0.50"/>
     <Button
             android:id="@+id/start_game"
             android:text="Button"

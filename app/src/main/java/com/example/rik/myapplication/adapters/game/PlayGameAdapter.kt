@@ -1,7 +1,6 @@
 package com.example.rik.myapplication.adapters.game
 
 import android.content.Context
-import android.support.v4.app.Fragment
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -19,7 +18,7 @@ class PlayGameAdapter(internal var context: Context,
     lateinit var activity: GameActivity
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayGameViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.game_scorebord_item, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.game_item_scorebord, parent, false)
         activity = fragment.activity as GameActivity
         return PlayGameViewHolder(itemView)
     }
@@ -169,10 +168,8 @@ class PlayGameAdapter(internal var context: Context,
                     return
                 }
             }
-            //TODO naar winnaarscherm
-            member.name = member.name + " winner"
-            activity.db!!.updatePlayer(member)
-            this.notifyDataSetChanged()
+            activity.setWinner(member)
+            activity.goTo("end_of_game")
         }
     }
 }
