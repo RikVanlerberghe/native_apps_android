@@ -15,19 +15,20 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.inloggen_inloggen.*
+import kotlinx.android.synthetic.main.inloggen_registreren.*
 
 class RegistreerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.inloggen_inloggen, container, false)
+        val view = inflater.inflate(R.layout.inloggen_registreren, container, false)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        inloggen.setOnClickListener {
+        registreren.setOnClickListener {
             //TODO alle checks
             checkUserName("Jakhals")
             //getMainActivity().db!!.addUser(User(username.text.toString(), password.text.toString(), 0))
@@ -42,10 +43,10 @@ class RegistreerFragment : Fragment() {
                     val json = JsonParser().parse(String(response.data)) as JsonObject
                     var exists = json["groupname"].asString
                     if(exists == "ok"){
-                        title.text = "ok"
+                        textView2.text = "ok"
                     }else{
                         if(exists == "alreadyexists"){
-                            title.text = "alreadyexists"
+                            textView2.text = "alreadyexists"
                         }
                     }
                 }
