@@ -24,11 +24,11 @@ class BalanceFragment : Fragment() {
         numberOfDrinksLeft.text = getCurrentCard().numberOfDrinksLeft.toString()
     }
 
-    private fun getMainActivity(): MainActivity {
-        return activity as MainActivity
-    }
-
     private fun getCurrentCard(): Card {
         return getMainActivity().db!!.getCards().first()
+    }
+
+    private fun getMainActivity(): MainActivity {
+        return activity as MainActivity
     }
 }

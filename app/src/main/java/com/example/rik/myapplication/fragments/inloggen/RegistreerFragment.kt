@@ -1,6 +1,7 @@
 package com.example.rik.myapplication.fragments.inloggen
 
 import android.app.Activity
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -33,7 +34,7 @@ class RegistreerFragment : Fragment() {
 
         registreren.setOnClickListener {
             //TODO errors aanvullen checkusername gebruiken
-            if(reg_password.equals(password_confirm)){
+            if(reg_password.text.toString().equals(password_confirm.text.toString())){
                 createUser(User(reg_username.text.toString(), reg_password.text.toString(), 0))
             }else{
                 Snackbar.make(view, "passwords are not equal", Snackbar.LENGTH_LONG).show()
@@ -72,7 +73,10 @@ class RegistreerFragment : Fragment() {
                 is Result.Success -> {
                     val json = result.value.obj()
                     val token = json["token"].toString()
-                    //TODO aanvullen
+                    val editor = getMainActivity().getSharedPreferences("myPref", MODE_PRIVATE).edit()
+                    editor.putString("user", token)
+                    editor.apply()
+                    getMainActivity().goTo("home")
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.example.rik.myapplication.fragments.inloggen
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -42,7 +43,11 @@ class InlogFragment: Fragment() {
                     //TODO aanvullen
                 }
                 is Result.Success -> {
-                    //TODO aanvullen
+                    val json = result.value.obj()
+                    val token = json["token"].toString()
+                    val editor = getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE).edit()
+                    editor.putString("user", token)
+                    editor.apply()
                     getMainActivity().goTo("home")
                 }
             }
