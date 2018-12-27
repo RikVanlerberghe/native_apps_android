@@ -40,8 +40,9 @@ class RegistreerFragment : Fragment() {
         request.responseJson { request, response, result ->
             when(result) {
                 is Result.Success -> {
-                    val json = JsonParser().parse(String(response.data)) as JsonObject
-                    var exists = json["groupname"].asString
+                    var x = String(response.data)
+                    val json = JsonParser().parse(x) as JsonObject
+                    var exists = json["username"].asString
                     if(exists == "ok"){
                         textView2.text = "ok"
                     }else{
@@ -49,6 +50,9 @@ class RegistreerFragment : Fragment() {
                             textView2.text = "alreadyexists"
                         }
                     }
+                }
+                is Result.Failure -> {
+                    error("failure")
                 }
             }
         }

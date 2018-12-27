@@ -11,11 +11,15 @@ class Api private constructor() {
     }
 
     init {
-        FuelManager.instance.basePath = "http://10.0.2.2:5001/api"
+        FuelManager.instance.basePath = "http://10.0.2.2:5000/api"
     }
 
-    fun checkUsername(groupname: String): Request =
-        "User/CheckUsername/$groupname"
+    fun checkUsername(name: String): Request =
+        "User/CheckUsername/$name"
+            .httpGet()
+
+    fun getUser(name: String): Request =
+        "User/GetUser/$name"
             .httpGet()
 
     companion object {
