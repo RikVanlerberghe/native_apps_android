@@ -73,8 +73,10 @@ class RegistreerFragment : Fragment() {
                 is Result.Success -> {
                     val json = result.value.obj()
                     val token = json["token"].toString()
+                    val username = json["username"].toString()
                     val editor = getMainActivity().getSharedPreferences("myPref", MODE_PRIVATE).edit()
                     editor.putString("user", token)
+                    editor.putString("username", username)
                     editor.apply()
                     getMainActivity().goTo("home")
                 }

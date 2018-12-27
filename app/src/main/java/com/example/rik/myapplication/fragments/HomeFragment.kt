@@ -1,5 +1,6 @@
 package com.example.rik.myapplication.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +20,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if(getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE) != null){
+            var x = getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE).getString("username", "niet ingelogd")
+            title_home.text = x
+        }
         //goTo buy card
         buy_card.setOnClickListener {
             getMainActivity().goTo("buyCard")
