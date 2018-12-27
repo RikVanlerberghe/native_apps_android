@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.rik.myapplication.R
 import com.example.rik.myapplication.activities.MainActivity
+import com.example.rik.myapplication.network.Api
+import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.result.Result
 import kotlinx.android.synthetic.main.inloggen_inloggen.*
 
 class InlogFragment: Fragment() {
@@ -22,10 +25,26 @@ class InlogFragment: Fragment() {
         inloggen.setOnClickListener {
             //TODO inloggen_inloggen en savedinstancestate
             try{
-                getMainActivity().db!!.getUser(username.text.toString(), password.text.toString())
-                getMainActivity().goTo("home")
+                loginUser()
+                //getMainActivity().db!!.getUser(username.text.toString(), password.text.toString())
+                //getMainActivity().goTo("home")
             }catch (e : Exception){
 
+            }
+        }
+    }
+
+    private fun loginUser(){
+        val request = Api.instance.login(username.text.toString(), password.text.toString())
+        request.responseJson { request, response, result ->
+            when(result){
+                is Result.Failure -> {
+                    //TODO aanvullen
+                }
+                is Result.Success -> {
+                    //TODO aanvullen
+                    getMainActivity().goTo("home")
+                }
             }
         }
     }

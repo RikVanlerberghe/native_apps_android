@@ -3,6 +3,7 @@ package com.example.rik.myapplication.fragments.inloggen
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,9 +32,12 @@ class RegistreerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         registreren.setOnClickListener {
-            //TODO alle checks
-            createUser(User("Ezel", "P@ssword1", 0))
-            //getMainActivity().db!!.addUser(User(username.text.toString(), password.text.toString(), 0))
+            //TODO errors aanvullen checkusername gebruiken
+            if(reg_password.equals(password_confirm)){
+                createUser(User(reg_username.text.toString(), reg_password.text.toString(), 0))
+            }else{
+                Snackbar.make(view, "passwords are not equal", Snackbar.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -58,7 +62,7 @@ class RegistreerFragment : Fragment() {
         }
     }
 
-    fun createUser(user: User){
+    private fun createUser(user: User){
         val request = Api.instance.createUser(user)
         request.responseJson { request, response, result ->
             when (result) {

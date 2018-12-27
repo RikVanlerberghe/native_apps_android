@@ -25,6 +25,11 @@ class Api private constructor() {
         "User/CreateUser"
             .httpPost().body(Gson().toJson(user)).header(mapOf("Content-Type" to "application/json"))
 
+    fun login(username: String, password: String): Request =
+            "User/Login"
+                .httpPost().body("{'Username' : '$username', 'Password' : '$password'}").header(mapOf("Content-Type" to "application/json"))
+
+
     fun getUser(name: String): Request =
         "User/GetUser/$name"
             .httpGet()
