@@ -1,5 +1,7 @@
 package com.example.rik.myapplication.fragments.inloggen
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -30,7 +32,7 @@ class RegistreerFragment : Fragment() {
 
         registreren.setOnClickListener {
             //TODO alle checks
-            checkUserName("Jakhals")
+            createUser(User("Ezel", "P@ssword1", 0))
             //getMainActivity().db!!.addUser(User(username.text.toString(), password.text.toString(), 0))
         }
     }
@@ -44,15 +46,29 @@ class RegistreerFragment : Fragment() {
                     val json = JsonParser().parse(x) as JsonObject
                     var exists = json["username"].asString
                     if(exists == "ok"){
-                        textView2.text = "ok"
+                        //TODO aanvullen
                     }else{
-                        if(exists == "alreadyexists"){
-                            textView2.text = "alreadyexists"
+                        //TODO aanvullen
                         }
                     }
-                }
+                    is Result.Failure -> {
+                        //TODO aanvullen
+                   }
+            }
+        }
+    }
+
+    fun createUser(user: User){
+        val request = Api.instance.createUser(user)
+        request.responseJson { request, response, result ->
+            when (result) {
                 is Result.Failure -> {
-                    error("failure")
+                    //TODO aanvullen
+                }
+                is Result.Success -> {
+                    val json = result.value.obj()
+                    val token = json["token"].toString()
+                    //TODO aanvullen
                 }
             }
         }

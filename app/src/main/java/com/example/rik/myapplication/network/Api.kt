@@ -1,8 +1,11 @@
 package com.example.rik.myapplication.network
 
+import com.example.rik.myapplication.domain.models.User
 import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.fuel.httpPost
+import com.google.gson.Gson
 
 class Api private constructor() {
 
@@ -17,6 +20,10 @@ class Api private constructor() {
     fun checkUsername(name: String): Request =
         "User/CheckUsername/$name"
             .httpGet()
+
+    fun createUser(user: User): Request =
+        "User/CreateUser"
+            .httpPost().body(Gson().toJson(user)).header(mapOf("Content-Type" to "application/json"))
 
     fun getUser(name: String): Request =
         "User/GetUser/$name"
