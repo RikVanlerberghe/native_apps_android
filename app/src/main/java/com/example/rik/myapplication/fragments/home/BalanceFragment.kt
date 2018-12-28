@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.balance.*
 class BalanceFragment : Fragment() {
 
     private lateinit var username: String
-    //TODO naar int
     private lateinit var budget: String
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment

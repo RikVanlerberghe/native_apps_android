@@ -18,7 +18,6 @@ class BuyCardFragment : Fragment() {
 
     //number of cards to order
     private lateinit var username: String
-    //TODO naar int
     private lateinit var budget: String
     private var addToBudget: Int = 5
 
