@@ -16,13 +16,14 @@
 
     <TextView
             android:id="@+id/numberOfCardsLeft_Label"
-            android:text="Cards Left "
+            android:text="current state "
             android:textSize="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/numberOfDrinksLeft"
-            app:layout_constraintTop_toBottomOf="@id/title"/>
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/numberOfCardsLeft" app:layout_constraintVertical_bias="0.109"/>
 
     <TextView
             android:id="@+id/numberOfCardsLeft"
@@ -31,27 +32,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/title"
-            app:layout_constraintStart_toEndOf="@id/numberOfDrinksLeft_Label"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-    <TextView
-            android:id="@+id/numberOfDrinksLeft_Label"
-            android:text="Drinks Left "
-            android:textSize="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/numberOfDrinksLeft"
-            app:layout_constraintTop_toBottomOf="@id/numberOfCardsLeft_Label"/>
-
-    <TextView
-            android:id="@+id/numberOfDrinksLeft"
-            android:text="1"
-            android:textSize="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/numberOfCardsLeft"
-            app:layout_constraintStart_toEndOf="@id/numberOfCardsLeft_Label"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/numberOfCardsLeft_Label"
+            app:layout_constraintHorizontal_bias="0.421" app:layout_constraintVertical_bias="0.109"/>
 
 </android.support.constraint.ConstraintLayout>

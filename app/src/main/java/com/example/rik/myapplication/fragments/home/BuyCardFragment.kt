@@ -20,7 +20,7 @@ class BuyCardFragment : Fragment() {
     private lateinit var username: String
     //TODO naar int
     private lateinit var budget: String
-    private var numberOfCards: Int = 1
+    private var addToBudget: Int = 5
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -30,8 +30,8 @@ class BuyCardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var username = getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE).getString("username", "niet ingelogd")
-        var request = Api.instance.getUser(username)
+        var user = getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE).getString("username", "niet ingelogd")
+        var request = Api.instance.getUser(user)
         request.responseJson { request, response, result ->
             when(result){
                 is Result.Failure -> {
@@ -46,16 +46,16 @@ class BuyCardFragment : Fragment() {
         }
 
         increase.setOnClickListener {
-            numberOfCards++
-            quantity.setText(numberOfCards.toString())
+            addToBudget += 5
+            quantity.setText(addToBudget.toString())
         }
         decrease.setOnClickListener {
-            numberOfCards--
-            quantity.setText(numberOfCards.toString())
+            addToBudget -= 5
+            quantity.setText(addToBudget.toString())
         }
         confirm.setOnClickListener {
             //TODO backend verder uitwerken
-            for(i in 1..numberOfCards) {
+            for(i in 1..addToBudget) {
                 getMainActivity().db!!.addCard()
             }
             getMainActivity().goTo("home")
