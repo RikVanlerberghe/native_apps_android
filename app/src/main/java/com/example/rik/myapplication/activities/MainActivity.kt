@@ -1,5 +1,6 @@
 package com.example.rik.myapplication.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -115,6 +116,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.action_info -> {
                 goTo("settings_info")
+            }
+            R.id.action_logOff -> {
+                val editor = getSharedPreferences("myPref", Context.MODE_PRIVATE)
+                editor.edit().putString("user", "0")
+                editor.edit().putString("username", "").apply()
+                goTo("home")
             }
         }
         return true
