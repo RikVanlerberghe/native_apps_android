@@ -3,7 +3,6 @@ package com.example.rik.myapplication.activities
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -14,7 +13,7 @@ import com.example.rik.myapplication.R
 import com.example.rik.myapplication.R.id.navHome
 import com.example.rik.myapplication.database.sqlite.DBHelper
 import com.example.rik.myapplication.domain.models.Player
-import com.example.rik.myapplication.fragments.BalanceFragment
+import com.example.rik.myapplication.fragments.home.BalanceFragment
 import com.example.rik.myapplication.fragments.game.CreateGameFragment
 import com.example.rik.myapplication.fragments.game.EndOfGameFragment
 import com.example.rik.myapplication.fragments.game.PlayGameFragment
@@ -69,7 +68,7 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 return
             }
             "balance" -> {
-                fragment = BalanceFragment ()
+                fragment = BalanceFragment()
                 currentFragmentTag = fragmentName
             }
             //settings

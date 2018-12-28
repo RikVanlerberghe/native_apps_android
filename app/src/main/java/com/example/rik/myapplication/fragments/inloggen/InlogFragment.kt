@@ -2,6 +2,7 @@ package com.example.rik.myapplication.fragments.inloggen
 
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.example.rik.myapplication.network.Api
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.Result
 import kotlinx.android.synthetic.main.inloggen_inloggen.*
+import kotlinx.android.synthetic.main.inloggen_registreren.*
 
 class InlogFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -24,13 +26,14 @@ class InlogFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         inloggen.setOnClickListener {
-            //TODO inloggen_inloggen en savedinstancestate
             try{
-                loginUser()
-                //getMainActivity().db!!.getUser(username.text.toString(), password.text.toString())
-                //getMainActivity().goTo("home")
+                if(username.text.toString().isEmpty() || password.text.toString().isEmpty()){
+                    Snackbar.make(view, "not all fields are filled", Snackbar.LENGTH_LONG).show()
+                }else {
+                    loginUser()
+                }
             }catch (e : Exception){
-
+                Snackbar.make(view, "Something went wrong..", Snackbar.LENGTH_LONG).show()
             }
         }
     }
@@ -40,7 +43,7 @@ class InlogFragment: Fragment() {
         request.responseJson { request, response, result ->
             when(result){
                 is Result.Failure -> {
-                    //TODO aanvullen
+                    Snackbar.make(this.view!!, "user or password are not correct", Snackbar.LENGTH_LONG).show()
                 }
                 is Result.Success -> {
                     val json = result.value.obj()

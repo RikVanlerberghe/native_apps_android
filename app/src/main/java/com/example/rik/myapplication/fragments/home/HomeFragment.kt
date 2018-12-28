@@ -1,4 +1,4 @@
-package com.example.rik.myapplication.fragments
+package com.example.rik.myapplication.fragments.home
 
 import android.content.Context
 import android.os.Bundle
