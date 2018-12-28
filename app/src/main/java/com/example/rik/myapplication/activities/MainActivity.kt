@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.example.rik.myapplication.R
 import com.example.rik.myapplication.database.sqlite.DBHelper
 import com.example.rik.myapplication.domain.models.Player
@@ -21,6 +23,7 @@ import com.example.rik.myapplication.fragments.settings.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.buy_pay_card.*
+import kotlinx.android.synthetic.main.content_game.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -55,6 +58,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             if(supportFragmentManager.findFragmentByTag("payCard") != null && supportFragmentManager.findFragmentByTag("payCard")!!.isVisible){
+                Snackbar.make(window.decorView, "You have to pay first", Snackbar.LENGTH_LONG).show()
                 return
             }
             super.onBackPressed()
