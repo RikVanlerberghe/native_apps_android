@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.rik.myapplication.R
 import com.example.rik.myapplication.database.sqlite.DBHelper
+import com.example.rik.myapplication.domain.models.Player
 import com.example.rik.myapplication.fragments.home.*
 import com.example.rik.myapplication.fragments.inloggen.InlogFragment
 import com.example.rik.myapplication.fragments.inloggen.RegistreerFragment
@@ -19,9 +20,11 @@ import com.example.rik.myapplication.fragments.settings.InfoFragment
 import com.example.rik.myapplication.fragments.settings.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.buy_pay_card.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    private var amountToPay: String = ""
     private var currentFragmentTag: String = ""
     var db : DBHelper? = null
 
@@ -47,9 +50,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
+
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
+            if(supportFragmentManager.findFragmentByTag("payCard") != null && supportFragmentManager.findFragmentByTag("payCard")!!.isVisible){
+                return
+            }
             super.onBackPressed()
         }
     }
@@ -156,6 +163,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    fun getAmountToPay() = amountToPay
+    fun setAmountToPay(amount: String){
+        this.amountToPay = amount
     }
 
     private fun switchFragment(addToBackStack: Boolean, fragmentTag: String, fragment: Fragment) {

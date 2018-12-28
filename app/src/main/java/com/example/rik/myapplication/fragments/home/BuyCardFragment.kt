@@ -67,6 +67,7 @@ class BuyCardFragment : Fragment() {
                             val json = result.value.obj()
                             username = json["username"].toString()
                             budget = json["budget"].toString()
+                            getMainActivity().setAmountToPay(y.toString())
                             getMainActivity().goTo("payCard")
                         }
                     }
