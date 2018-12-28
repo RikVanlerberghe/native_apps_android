@@ -53,18 +53,28 @@ class BuyDrinkFragment : Fragment() {
             quantity.setText(numberOfDrinks.toString())
         }
         confirm.setOnClickListener {
-            //TODO backend
-            while (numberOfDrinks > getCurrentCard().numberOfDrinksLeft) {
-                numberOfDrinks -= getCurrentCard().numberOfDrinksLeft
-                getMainActivity().db!!.deleteCard(getCurrentCard().id)
+            var x = budget.toDouble()
+            var y = numberOfDrinks
+            if(x >= y){
+                var newBudget = x - y
+                var request = Api.instance.updateUser(username, newBudget.toInt().toString())
+                request.responseJson { request, response, result ->
+                    when(result){
+                        is Result.Failure -> {
+                            Snackbar.make(view, "something went wrong..", Snackbar.LENGTH_LONG).show()
+                        }
+                        is Result.Success -> {
+                            val json = result.value.obj()
+                            username = json["username"].toString()
+                            budget = json["budget"].toString()
+                            getMainActivity().goTo("home")
+                        }
+                    }
+                }
+            }else{
+                Snackbar.make(view, "You don't have enough money", Snackbar.LENGTH_LONG).show()
             }
-            if (numberOfDrinks > 0) {
-                getMainActivity().db!!.updateCard(
-                    getCurrentCard().id,
-                    getCurrentCard().numberOfDrinksLeft - numberOfDrinks
-                )
-            }
-            getMainActivity().goTo("home")
+
         }
     }
 

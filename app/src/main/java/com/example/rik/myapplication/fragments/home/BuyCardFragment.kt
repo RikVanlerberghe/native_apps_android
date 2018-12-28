@@ -53,7 +53,6 @@ class BuyCardFragment : Fragment() {
             quantity.setText(addToBudget.toString())
         }
         confirm.setOnClickListener {
-            //TODO backend verder uitwerken
             var x = budget.toDouble()
             var y = addToBudget
             var newBudget = x + y
