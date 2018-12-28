@@ -9,7 +9,7 @@ import com.example.rik.myapplication.domain.models.Player
 import com.example.rik.myapplication.domain.models.User
 
 class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1) {
-
+//TODO enkel player is hier nodig!! opkuisen
     companion object {
         private var instance: DBHelper? = null
 
