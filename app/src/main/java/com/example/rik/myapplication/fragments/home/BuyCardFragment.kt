@@ -54,10 +54,23 @@ class BuyCardFragment : Fragment() {
         }
         confirm.setOnClickListener {
             //TODO backend verder uitwerken
-            for(i in 1..addToBudget) {
-                getMainActivity().db!!.addCard()
+            var x = budget.toDouble()
+            var y = addToBudget
+            var newBudget = x + y
+            var request = Api.instance.updateUser(username, newBudget.toInt().toString())
+            request.responseJson { request, response, result ->
+                when(result){
+                    is Result.Failure -> {
+                        Snackbar.make(view, "something went wrong..", Snackbar.LENGTH_LONG).show()
+                    }
+                    is Result.Success -> {
+                        val json = result.value.obj()
+                        username = json["username"].toString()
+                        budget = json["budget"].toString()
+                        getMainActivity().goTo("home")
+                    }
+                }
             }
-            getMainActivity().goTo("home")
         }
     }
 
