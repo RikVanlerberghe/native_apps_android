@@ -25,13 +25,13 @@
     <item android:title="inloggen">
         <menu>
             <item
-                    android:id="@+id/nav_registreren"
-                    android:icon="@drawable/ic_menu_slideshow"
-                    android:title="Registreren"/>
-            <item
                     android:id="@+id/nav_inloggen"
                     android:icon="@drawable/ic_menu_manage"
                     android:title="Inloggen"/>
+            <item
+                    android:id="@+id/nav_registreren"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="Registreren"/>
         </menu>
     </item>
 

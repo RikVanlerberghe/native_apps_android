@@ -53,28 +53,31 @@ class BuyDrinkFragment : Fragment() {
             quantity.setText(numberOfDrinks.toString())
         }
         confirm.setOnClickListener {
-            var x = budget.toDouble()
-            var y = numberOfDrinks
-            if(x >= y){
-                var newBudget = x - y
-                var request = Api.instance.updateUser(username, newBudget.toInt().toString())
-                request.responseJson { request, response, result ->
-                    when(result){
-                        is Result.Failure -> {
-                            Snackbar.make(view, "something went wrong..", Snackbar.LENGTH_LONG).show()
-                        }
-                        is Result.Success -> {
-                            val json = result.value.obj()
-                            username = json["username"].toString()
-                            budget = json["budget"].toString()
-                            getMainActivity().goTo("home")
+            try {
+                var x = budget.toDouble()
+                var y = numberOfDrinks
+                if (x >= y) {
+                    var newBudget = x - y
+                    var request = Api.instance.updateUser(username, newBudget.toInt().toString())
+                    request.responseJson { request, response, result ->
+                        when (result) {
+                            is Result.Failure -> {
+                                Snackbar.make(view, "something went wrong..", Snackbar.LENGTH_LONG).show()
+                            }
+                            is Result.Success -> {
+                                val json = result.value.obj()
+                                username = json["username"].toString()
+                                budget = json["budget"].toString()
+                                getMainActivity().goTo("home")
+                            }
                         }
                     }
+                } else {
+                    Snackbar.make(view, "You don't have enough money", Snackbar.LENGTH_LONG).show()
                 }
-            }else{
-                Snackbar.make(view, "You don't have enough money", Snackbar.LENGTH_LONG).show()
+            }catch (e: Exception){
+                Snackbar.make(view, "you are not logged in", Snackbar.LENGTH_LONG).show()
             }
-
         }
     }
 

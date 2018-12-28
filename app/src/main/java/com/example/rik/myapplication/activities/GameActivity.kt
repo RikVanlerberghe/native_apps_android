@@ -1,8 +1,10 @@
 package com.example.rik.myapplication.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -10,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import com.example.rik.myapplication.R
-import com.example.rik.myapplication.R.id.navHome
+import com.example.rik.myapplication.R.id.*
 import com.example.rik.myapplication.database.sqlite.DBHelper
 import com.example.rik.myapplication.domain.models.Player
 import com.example.rik.myapplication.fragments.home.BalanceFragment
@@ -67,10 +69,6 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this, MainActivity::class.java))
                 return
             }
-            "balance" -> {
-                fragment = BalanceFragment()
-                currentFragmentTag = fragmentName
-            }
             //settings
             "settings_settings" -> {
                 fragment = SettingsFragment()
@@ -111,6 +109,11 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.action_info -> {
                 goTo("settings_info")
+            }
+            R.id.action_logOff -> {
+                val editor = getSharedPreferences("myPref", Context.MODE_PRIVATE)
+                editor.edit().putString("user", "0")
+                editor.edit().putString("username", "").apply()
             }
         }
         return true

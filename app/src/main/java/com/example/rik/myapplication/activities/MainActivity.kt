@@ -12,10 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.rik.myapplication.R
 import com.example.rik.myapplication.database.sqlite.DBHelper
-import com.example.rik.myapplication.fragments.home.BalanceFragment
-import com.example.rik.myapplication.fragments.home.BuyCardFragment
-import com.example.rik.myapplication.fragments.home.BuyDrinkFragment
-import com.example.rik.myapplication.fragments.home.HomeFragment
+import com.example.rik.myapplication.fragments.home.*
 import com.example.rik.myapplication.fragments.inloggen.InlogFragment
 import com.example.rik.myapplication.fragments.inloggen.RegistreerFragment
 import com.example.rik.myapplication.fragments.settings.InfoFragment
@@ -82,6 +79,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             "buyDrink" -> {
                 fragment = BuyDrinkFragment()
+                currentFragmentTag = fragmentName
+            }
+            "payCard" -> {
+                fragment = PayCardFragment()
                 currentFragmentTag = fragmentName
             }
             //navigation menu

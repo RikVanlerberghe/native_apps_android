@@ -33,82 +33,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
         val CREATE_CARD_TABLE = "CREATE TABLE card " + "(id Integer PRIMARY KEY, numberOfDrinksLeft Integer)"
         val CREATE_USER_TABLE = "CREATE TABLE user " + "(username TEXT PRIMARY KEY, password TEXT, balance Integer)"
         val CREATE_PLAYER_TABLE = "CREATE TABLE player " + "(name TEXT PRIMARY KEY, fifteen Integer, sixteen Integer, seventeen Integer, eighteen Integer, nineteen Integer, twenty Integer, bull Integer, score Integer)"
-        db!!.execSQL(CREATE_CARD_TABLE)
-        db!!.execSQL(CREATE_USER_TABLE)
         db!!.execSQL(CREATE_PLAYER_TABLE)
-    }
-
-
-
-    fun addUser(user: User): Boolean {
-        val db = this.writableDatabase
-        val values = ContentValues()
-        values.put("password", "test")
-        values.put("username", "test")
-        values.put("balance", 1)
-        val _succes = db.insert("user",null,values)
-        db.close()
-        return (Integer.parseInt("$_succes") != -1)
-    }
-
-    fun addCard(): Boolean {
-        val db = this.writableDatabase
-        val values = ContentValues()
-        values.put("numberOfDrinksLeft", 10)
-        val _succes = db.insert("card",null,values)
-        db.close()
-        return (Integer.parseInt("$_succes") != -1)
-    }
-
-    fun deletePlayer(name: String): Boolean {
-        val db = this.writableDatabase
-        val _succes = db.delete("player", "name" + "=?", arrayOf(name)).toLong()
-        db.close()
-        return Integer.parseInt("$_succes") != -1
-    }
-
-    fun deleteUser(username: String): Boolean {
-        val db = this.writableDatabase
-        val _succes = db.delete("user", "username" + "=?", arrayOf(username)).toLong()
-        db.close()
-        return Integer.parseInt("$_succes") != -1
-    }
-
-    fun deleteCard(id: String): Boolean {
-        val db = this.writableDatabase
-        val _succes = db.delete("card", "id" + "=?", arrayOf(id)).toLong()
-        db.close()
-        return Integer.parseInt("$_succes") != -1
-    }
-
-    fun updateCard(id: String, change: Int): Boolean {
-        val db = this.writableDatabase
-        val values = ContentValues()
-        values.put("numberOfDrinksLeft", change)
-        val _succes = db.update("card", values, "id" + "=?", arrayOf(id)).toLong()
-        db.close()
-        return Integer.parseInt("$_succes") != -1
-    }
-
-    fun getCards(): ArrayList<Card>{
-        val cardList = ArrayList<Card>()
-        val db = readableDatabase
-        val SELECT_CARDS = "SELECT * FROM card"
-        val cursor = db.rawQuery(SELECT_CARDS,null)
-        if(cursor!=null){
-            if(cursor.moveToFirst()){
-                do{
-                    val card = Card()
-                    card.id = cursor.getString(cursor.getColumnIndex("id"))
-                    card.numberOfDrinksLeft = cursor.getInt(cursor.getColumnIndex("numberOfDrinksLeft"))
-                    cardList.add(card)
-                }while (cursor.moveToNext())
-            }
-        }
-        cursor.close()
-        db.close()
-
-        return cardList
     }
 
     fun getPlayers(): ArrayList<Player>{
@@ -161,6 +86,13 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
             return (Integer.parseInt("$_succes") != -1)
     }
 
+    fun deletePlayer(name: String): Boolean {
+        val db = this.writableDatabase
+        val _succes = db.delete("player", "name" + "=?", arrayOf(name)).toLong()
+        db.close()
+        return Integer.parseInt("$_succes") != -1
+    }
+
     fun updatePlayer(player: Player): Boolean{
         val db = this.writableDatabase
         val values = ContentValues()
@@ -187,6 +119,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
         return error("player does not exist")
     }
 
+    //nu niet nodig, maar komen misschien nog van pas
+    /*
     fun getUsers(): ArrayList<User>{
         val userList = ArrayList<User>()
         val db = readableDatabase
@@ -222,6 +156,71 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
         } })
         return error("something went wrong")
     }
+
+    fun addUser(user: User): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put("password", "test")
+        values.put("username", "test")
+        values.put("balance", 1)
+        val _succes = db.insert("user",null,values)
+        db.close()
+        return (Integer.parseInt("$_succes") != -1)
+    }
+
+    fun addCard(): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put("numberOfDrinksLeft", 10)
+        val _succes = db.insert("card",null,values)
+        db.close()
+        return (Integer.parseInt("$_succes") != -1)
+    }
+
+    fun deleteUser(username: String): Boolean {
+        val db = this.writableDatabase
+        val _succes = db.delete("user", "username" + "=?", arrayOf(username)).toLong()
+        db.close()
+        return Integer.parseInt("$_succes") != -1
+    }
+
+    fun deleteCard(id: String): Boolean {
+        val db = this.writableDatabase
+        val _succes = db.delete("card", "id" + "=?", arrayOf(id)).toLong()
+        db.close()
+        return Integer.parseInt("$_succes") != -1
+    }
+
+    fun updateCard(id: String, change: Int): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put("numberOfDrinksLeft", change)
+        val _succes = db.update("card", values, "id" + "=?", arrayOf(id)).toLong()
+        db.close()
+        return Integer.parseInt("$_succes") != -1
+    }
+
+    fun getCards(): ArrayList<Card>{
+        val cardList = ArrayList<Card>()
+        val db = readableDatabase
+        val SELECT_CARDS = "SELECT * FROM card"
+        val cursor = db.rawQuery(SELECT_CARDS,null)
+        if(cursor!=null){
+            if(cursor.moveToFirst()){
+                do{
+                    val card = Card()
+                    card.id = cursor.getString(cursor.getColumnIndex("id"))
+                    card.numberOfDrinksLeft = cursor.getInt(cursor.getColumnIndex("numberOfDrinksLeft"))
+                    cardList.add(card)
+                }while (cursor.moveToNext())
+            }
+        }
+        cursor.close()
+        db.close()
+
+        return cardList
+    }*/
+
     // Access property for Context
     val Context.database: DBHelper
         get() = DBHelper.getInstance(applicationContext)
