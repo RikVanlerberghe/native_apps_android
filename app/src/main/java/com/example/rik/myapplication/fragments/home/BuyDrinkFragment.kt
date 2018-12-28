@@ -78,10 +78,6 @@ class BuyDrinkFragment : Fragment() {
         }
     }
 
-    private fun getCurrentCard(): Card {
-        return getMainActivity().db!!.getCards().first()
-    }
-
     private fun getMainActivity(): MainActivity {
         return activity as MainActivity
     }
