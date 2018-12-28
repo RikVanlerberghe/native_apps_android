@@ -33,11 +33,14 @@ class RegistreerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         registreren.setOnClickListener {
-            //TODO errors aanvullen checkusername gebruiken
-            if(reg_password.text.toString().equals(password_confirm.text.toString())){
-                createUser(User(reg_username.text.toString(), reg_password.text.toString(), 0))
-            }else{
-                Snackbar.make(view, "passwords are not equal", Snackbar.LENGTH_LONG).show()
+            if(reg_username.text.toString().isEmpty() || reg_password.text.toString().isEmpty() || password_confirm.text.toString().isEmpty()){
+                Snackbar.make(view, "not all fields are filled", Snackbar.LENGTH_LONG).show()
+            }else {
+                if (reg_password.text.toString().equals(password_confirm.text.toString())) {
+                    checkUserName(reg_username.text.toString())
+                } else {
+                    Snackbar.make(view, "passwords are not equal", Snackbar.LENGTH_LONG).show()
+                }
             }
         }
     }
@@ -51,13 +54,13 @@ class RegistreerFragment : Fragment() {
                     val json = JsonParser().parse(x) as JsonObject
                     var exists = json["username"].asString
                     if(exists == "ok"){
-                        //TODO aanvullen
-                    }else{
-                        //TODO aanvullen
-                        }
+                        createUser(User(reg_username.text.toString(), reg_password.text.toString(), 0))
+                    }
+                    if(exists == "alreadyexists")
+                        Snackbar.make(this.view!!, "User already exists", Snackbar.LENGTH_LONG).show()
                     }
                     is Result.Failure -> {
-                        //TODO aanvullen
+                        Snackbar.make(this.view!!, "Something went wrong..", Snackbar.LENGTH_LONG).show()
                    }
             }
         }
@@ -68,7 +71,7 @@ class RegistreerFragment : Fragment() {
         request.responseJson { request, response, result ->
             when (result) {
                 is Result.Failure -> {
-                    //TODO aanvullen
+                    Snackbar.make(this.view!!, "Something went wrong..", Snackbar.LENGTH_LONG).show()
                 }
                 is Result.Success -> {
                     val json = result.value.obj()
