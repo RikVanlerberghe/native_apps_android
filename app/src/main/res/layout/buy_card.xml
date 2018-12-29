@@ -19,7 +19,7 @@
 
     <Button
             android:id="@+id/confirm"
-            android:text="Button"
+            android:text="Confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteY="370dp"
@@ -30,7 +30,7 @@
 
     <Button
             android:id="@+id/increase"
-            android:text="Button"
+            android:text="+"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@+id/quantity"
@@ -40,7 +40,7 @@
 
     <Button
             android:id="@+id/decrease"
-            android:text="Button"
+            android:text="-"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"            app:layout_constraintEnd_toStartOf="@id/quantity"
