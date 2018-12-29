@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Balance"
+            android:text="Barkas"
             android:textSize="50sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.50"/>
 
     <TextView
-            android:id="@+id/numberOfCardsLeft_Label"
+            android:id="@+id/current_state_Label"
             android:text="current state "
             android:textSize="30dp"
             android:layout_width="wrap_content"
@@ -23,10 +22,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/numberOfCardsLeft" app:layout_constraintVertical_bias="0.109"/>
+            app:layout_constraintEnd_toStartOf="@id/numberOfCardsLeft"
+            app:layout_constraintVertical_bias="0.109"
+            android:layout_marginStart="60dp"/>
 
     <TextView
-            android:id="@+id/numberOfCardsLeft"
+            android:id="@+id/current_state"
             android:text="1"
             android:textSize="30dp"
             android:layout_width="wrap_content"
@@ -35,6 +36,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/numberOfCardsLeft_Label"
-            app:layout_constraintHorizontal_bias="0.421" app:layout_constraintVertical_bias="0.109"/>
-
+            app:layout_constraintHorizontal_bias="0.421"
+            app:layout_constraintVertical_bias="0.109"
+            android:layout_marginEnd="44dp"/>
 </android.support.constraint.ConstraintLayout>

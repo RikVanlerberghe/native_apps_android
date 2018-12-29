@@ -129,7 +129,7 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 goTo("home")
             }
             R.id.nav_balance -> {
-                goTo("balance")
+                goTo("home_balance")
             }
             R.id.nav_registreren -> {
             }
@@ -137,7 +137,7 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_game -> {
             }
-            R.id.nav_send -> {
+            R.id.nav_barCash -> {
             }
         }
 

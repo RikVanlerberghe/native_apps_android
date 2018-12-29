@@ -13,32 +13,31 @@ import com.example.rik.myapplication.network.Api
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.Result
 import kotlinx.android.synthetic.main.home_balance.*
+import kotlinx.android.synthetic.main.home_barcashregister.*
 
-class BalanceFragment : Fragment() {
+class BarCashRegisterFragment : Fragment() {
 
-    private lateinit var username: String
     private lateinit var budget: String
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.home_balance, container, false)
+        val view = inflater.inflate(R.layout.home_barcashregister, container, false)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var name = getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE).getString("username", "niet ingelogd")
-        var request = Api.instance.getUser(name)
+        var request = Api.instance.getBarCashRegister("Barkas")
         request.responseJson { request, response, result ->
             when(result){
                 is Result.Failure -> {
-                    Snackbar.make(view, "You are not logged in", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(view, "Something went wrong..", Snackbar.LENGTH_LONG).show()
                 }
                 is Result.Success -> {
                     val json = result.value.obj()
-                    username = json["username"].toString()
                     budget = json["budget"].toString()
-                    numberOfCardsLeft.text = budget
+                    current_state.text = budget
                 }
             }
         }

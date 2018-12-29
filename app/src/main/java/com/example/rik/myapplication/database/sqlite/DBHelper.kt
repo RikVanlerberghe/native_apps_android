@@ -24,14 +24,14 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         //not implemented
-        val CREATE_USER_TABLE = "CREATE TABLE user " + "(username TEXT PRIMARY KEY, password TEXT, balance Integer)"
+        val CREATE_USER_TABLE = "CREATE TABLE user " + "(username TEXT PRIMARY KEY, password TEXT, home_balance Integer)"
         db!!.execSQL(CREATE_USER_TABLE)
 
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
         val CREATE_CARD_TABLE = "CREATE TABLE card " + "(id Integer PRIMARY KEY, numberOfDrinksLeft Integer)"
-        val CREATE_USER_TABLE = "CREATE TABLE user " + "(username TEXT PRIMARY KEY, password TEXT, balance Integer)"
+        val CREATE_USER_TABLE = "CREATE TABLE user " + "(username TEXT PRIMARY KEY, password TEXT, home_balance Integer)"
         val CREATE_PLAYER_TABLE = "CREATE TABLE player " + "(name TEXT PRIMARY KEY, fifteen Integer, sixteen Integer, seventeen Integer, eighteen Integer, nineteen Integer, twenty Integer, bull Integer, score Integer)"
         db!!.execSQL(CREATE_PLAYER_TABLE)
     }
@@ -132,7 +132,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
                     val user = User()
                     user.username = cursor.getString(cursor.getColumnIndex("username"))
                     user.password = cursor.getString(cursor.getColumnIndex("password"))
-                    user.balance = cursor.getInt(cursor.getColumnIndex("balance"))
+                    user.home_balance = cursor.getInt(cursor.getColumnIndex("home_balance"))
                     userList.add(user)
                 }while (cursor.moveToNext())
             }
@@ -162,7 +162,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
         val values = ContentValues()
         values.put("password", "test")
         values.put("username", "test")
-        values.put("balance", 1)
+        values.put("home_balance", 1)
         val _succes = db.insert("user",null,values)
         db.close()
         return (Integer.parseInt("$_succes") != -1)

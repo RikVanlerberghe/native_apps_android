@@ -17,9 +17,9 @@
                 android:icon="@drawable/ic_menu_share"
                 android:title="Game"/>
         <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_barCash"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send"/>
+                android:title="Barkas"/>
     </group>
 
     <item android:title="inloggen">

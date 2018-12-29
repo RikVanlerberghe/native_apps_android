@@ -106,13 +106,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragment = HomeFragment()
                 currentFragmentTag = fragmentName
             }
-            "balance" -> {
+            "home_balance" -> {
                 fragment = BalanceFragment()
                 currentFragmentTag = fragmentName
             }
             "game" -> {
                 startActivity(Intent(this, GameActivity::class.java))
                 return
+            }
+            "barCash" -> {
+                fragment = BarCashRegisterFragment()
+                currentFragmentTag = fragmentName
             }
             "inloggen_registreren" -> {
                 fragment = RegistreerFragment()
@@ -154,7 +158,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 goTo("home")
             }
             R.id.nav_balance -> {
-                goTo("balance")
+                goTo("home_balance")
             }
             R.id.nav_registreren -> {
                 goTo("inloggen_registreren")
@@ -165,8 +169,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_game -> {
                 goTo("game")
             }
-            R.id.nav_send -> {
-
+            R.id.nav_barCash -> {
+                goTo("barCash")
             }
         }
 
