@@ -9,7 +9,7 @@
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/players"
-            android:layout_width="323dp"
+            android:layout_width="match_parent"
             android:layout_height="180dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -20,6 +20,7 @@
     <TextView
             android:id="@+id/title"
             android:text="Select Players"
+            android:textColor="@color/white"
             android:textSize="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,7 +54,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="Name"
+            android:hint=" Name"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:ems="10"
             app:layout_constraintBottom_toTopOf="@+id/add_player"
             app:layout_constraintTop_toBottomOf="@+id/players"
