@@ -106,6 +106,7 @@
                 android:layout_weight=".20"/>
     </LinearLayout>
     <Button
+            android:visibility="gone"
             android:id="@+id/add_score"
             android:text="Button"
             android:layout_width="wrap_content"
