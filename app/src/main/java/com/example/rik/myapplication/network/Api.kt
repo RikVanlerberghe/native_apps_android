@@ -41,6 +41,10 @@ class Api private constructor() {
         "User/GetBarcashRegister/$name"
             .httpGet()
 
+    fun updateBarCashRegister(name: String, budget: Int): Request =
+        "User/UpdateBarCashRegister"
+            .httpPost().body("{'Name' : '$name', 'Balance' : '$budget'}").header(mapOf("Content-Type" to "application/json"))
+
     companion object {
         val instance: Api by lazy { Holder.INSTANCE }
     }

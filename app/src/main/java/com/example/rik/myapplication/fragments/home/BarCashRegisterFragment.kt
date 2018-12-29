@@ -1,6 +1,7 @@
 package com.example.rik.myapplication.fragments.home
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -38,7 +39,30 @@ class BarCashRegisterFragment : Fragment() {
                     val json = result.value.obj()
                     budget = json["budget"].toString()
                     current_state.text = budget
+                    if(budget.toInt() < 0){
+                        current_state.setTextColor(Color.parseColor("#FF0000"))
+                    }
                 }
+            }
+        }
+
+        confirm_change.setOnClickListener {
+            try {
+            var request = Api.instance.updateBarCashRegister("Barkas", new_budget.text.toString().toInt())
+            request.responseJson { request, response, result ->
+                when(result){
+                    is Result.Failure -> {
+                        Snackbar.make(view, "Something went wrong..", Snackbar.LENGTH_LONG).show()
+                    }
+                    is Result.Success -> {
+                        val json = result.value.obj()
+                        budget = json["budget"].toString()
+                        getMainActivity().goTo("barCash")
+                    }
+                }
+            }
+        }catch (e: Exception){
+                Snackbar.make(view, "Not all fields are filled in", Snackbar.LENGTH_LONG).show()
             }
         }
     }
