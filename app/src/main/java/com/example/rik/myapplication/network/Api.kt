@@ -37,6 +37,10 @@ class Api private constructor() {
         "User/GetUser/$name"
             .httpGet()
 
+    fun getBarCashRegister(name: String): Request =
+        "User/GetBarcashRegister/$name"
+            .httpGet()
+
     companion object {
         val instance: Api by lazy { Holder.INSTANCE }
     }

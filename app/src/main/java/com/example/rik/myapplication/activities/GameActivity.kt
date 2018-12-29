@@ -29,8 +29,11 @@ import kotlinx.android.synthetic.main.app_bar_game.*
 class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private var currentFragmentTag: String = ""
+    //locale database for game
     var db : DBHelper? = null
+    //players that participate in the game
     private var group: ArrayList<Player> = ArrayList()
+    //winner of the game
     private lateinit var winner: Player
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,10 +62,10 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    //changing from fragment to fragment
     fun goTo(fragmentName: String){
         val addToBackStack = true
         var fragment = Fragment()
-
         when (fragmentName){
             //menu
             "home" -> {
@@ -142,6 +145,7 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    //getters and setter of group and winner
     fun getGroup() = group
     fun getWinner() = winner
     fun setGroup(group: ArrayList<Player>){
@@ -151,6 +155,7 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         this.winner = player
     }
 
+    //addplayertogroup
     fun addPlayerToGroup(player: Player){
         group.forEach {p ->
             if(p.name.equals(player.name)){
@@ -160,6 +165,7 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         this.group.add(player)
     }
 
+    //switching between fragment
     private fun switchFragment(addToBackStack: Boolean, fragmentTag: String, fragment: Fragment) {
         val trans = supportFragmentManager.beginTransaction().replace(R.id.fragment_container,fragment, fragmentTag)
         if (addToBackStack) trans.addToBackStack(fragmentTag)

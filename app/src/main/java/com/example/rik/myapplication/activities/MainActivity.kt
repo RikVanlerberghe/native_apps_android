@@ -27,8 +27,10 @@ import kotlinx.android.synthetic.main.content_game.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    //amount to pay for in the payFragment
     private var amountToPay: String = ""
     private var currentFragmentTag: String = ""
+    //database for the game
     var db : DBHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +38,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
 
         db = DBHelper(this)
+
+        //used to refresh the database
         //this.deleteDatabase("database")
 
         setSupportActionBar(toolbar)
@@ -71,6 +75,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    //switching between fragments
     fun goTo(fragmentName: String){
         val addToBackStack = true
         var fragment = Fragment()
@@ -169,11 +174,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    //getter en setter for amountToPay
     fun getAmountToPay() = amountToPay
     fun setAmountToPay(amount: String){
         this.amountToPay = amount
     }
 
+    //switching between fragments
     private fun switchFragment(addToBackStack: Boolean, fragmentTag: String, fragment: Fragment) {
         val trans = supportFragmentManager.beginTransaction().replace(R.id.fragment_container,fragment, fragmentTag)
         if (addToBackStack) trans.addToBackStack(fragmentTag)
