@@ -36,8 +36,9 @@ class BalanceFragment : Fragment() {
         request.responseJson { request, response, result ->
             when(result){
                 is Result.Failure -> {
-                    Snackbar.make(view, "You are not logged in", Snackbar.LENGTH_LONG).show()
-                }
+                    try {
+                        Snackbar.make(view, "You are not logged in", Snackbar.LENGTH_LONG).show()
+                    }catch (e: Exception){}                }
                 is Result.Success -> {
                     val json = result.value.obj()
                     username = json["username"].toString()

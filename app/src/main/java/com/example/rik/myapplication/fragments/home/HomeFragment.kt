@@ -22,8 +22,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if(getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE) == null || getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE).getString("username", "niet ingelogd").equals("")){
-            Snackbar.make(this.view!!, "You are not logged in", Snackbar.LENGTH_LONG).show()
-        }
+            try {
+                Snackbar.make(view, "You are not logged in", Snackbar.LENGTH_LONG).show()
+            }catch (e: Exception){}        }
         //goTo buy card
         buy_card.setOnClickListener {
             getMainActivity().goTo("buyCard")
