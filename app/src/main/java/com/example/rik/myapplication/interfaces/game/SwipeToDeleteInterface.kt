@@ -49,7 +49,7 @@ abstract class SwipeToDeleteInterface(context: Context?) : ItemTouchHelper.Simpl
             return
         }
 
-        // Draw the red delete background
+        // Draw the brown delete background
         background.color = backgroundColor
         background.setBounds(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
         background.draw(c)

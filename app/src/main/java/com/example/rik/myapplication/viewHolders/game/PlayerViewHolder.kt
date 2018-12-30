@@ -5,5 +5,6 @@ import android.view.View
 import kotlinx.android.synthetic.main.game_item_player.view.*
 
 class PlayerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    //viewholder holds playername
     val playerName = itemView.name
 }

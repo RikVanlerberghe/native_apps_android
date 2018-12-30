@@ -22,6 +22,7 @@ open class PlayerAdapterInterface (internal var context: Context, internal var f
     }
 
     fun removeAt(position: Int) {
+        //remove at position
         playerList.removeAt(position)
         notifyItemRemoved(position)
     }

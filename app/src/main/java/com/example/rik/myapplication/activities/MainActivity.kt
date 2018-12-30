@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
-
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
@@ -71,8 +70,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    //switching between fragments
     fun goTo(fragmentName: String){
+        //switching between fragments
         val addToBackStack = true
         var fragment = Fragment()
 
@@ -180,8 +179,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         this.amountToPay = amount
     }
 
-    //switching between fragments
     private fun switchFragment(addToBackStack: Boolean, fragmentTag: String, fragment: Fragment) {
+        //switching between fragments
         val trans = supportFragmentManager.beginTransaction().replace(R.id.fragment_container,fragment, fragmentTag)
         if (addToBackStack) trans.addToBackStack(fragmentTag)
         trans.commit()

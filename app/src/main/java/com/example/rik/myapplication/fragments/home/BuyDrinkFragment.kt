@@ -30,6 +30,8 @@ class BuyDrinkFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //get user
         var user = getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE).getString("username", "niet ingelogd")
         var request = Api.instance.getUser(user)
         request.responseJson { request, response, result ->
@@ -54,6 +56,8 @@ class BuyDrinkFragment : Fragment() {
             numberOfDrinks--
             quantity.setText(numberOfDrinks.toString())
         }
+
+        //update user balance
         confirm.setOnClickListener {
             try {
                 var x = budget.toDouble()

@@ -10,13 +10,14 @@ import com.example.rik.myapplication.viewHolders.game.PlayerViewHolder
 
 class SelectPlayerAdapter(context: Context, fragment: SelectPlayerFragment, playerList: MutableList<String>) :
     PlayerAdapterInterface(context, fragment, playerList) {
-
+    //adapter for the player recyclers
 
     override fun onBindViewHolder(holderCreate: PlayerViewHolder, position: Int) {
         var member = playerList[position]
         holderCreate.playerName.text = member
 
         holderCreate.itemView.setOnClickListener{
+            //puts player in game if clicked on (in selectview)
             run {
 
                 var activity = fragment.activity as GameActivity

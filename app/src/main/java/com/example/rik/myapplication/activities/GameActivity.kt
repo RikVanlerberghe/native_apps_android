@@ -60,8 +60,8 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    //changing from fragment to fragment
     fun goTo(fragmentName: String){
+        //changing from fragment to fragment
         val addToBackStack = true
         var fragment = Fragment()
         when (fragmentName){
@@ -153,8 +153,8 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         this.winner = player
     }
 
-    //addplayertogroup
     fun addPlayerToGroup(player: Player){
+        //addplayertogroup
         group.forEach {p ->
             if(p.name.equals(player.name)){
                 error("this player is already in the game")
@@ -163,8 +163,8 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         this.group.add(player)
     }
 
-    //switching between fragment
     private fun switchFragment(addToBackStack: Boolean, fragmentTag: String, fragment: Fragment) {
+        //switching between fragment
         val trans = supportFragmentManager.beginTransaction().replace(R.id.fragment_container,fragment, fragmentTag)
         if (addToBackStack) trans.addToBackStack(fragmentTag)
         trans.commit()

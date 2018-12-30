@@ -8,14 +8,17 @@ import com.github.kittinunf.fuel.httpPost
 import com.google.gson.Gson
 
 class Api private constructor() {
-
+    //network connection
     private object Holder {
         val INSTANCE = Api()
     }
 
     init {
+        //only local for now, this has to be changed if backend runs online
         FuelManager.instance.basePath = "http://10.0.2.2:5000/api"
     }
+
+    //functions do as the names imply
 
     fun checkUsername(name: String): Request =
         "User/CheckUsername/$name"
@@ -46,6 +49,7 @@ class Api private constructor() {
             .httpPost().body("{'Name' : '$name', 'Balance' : '$budget'}").header(mapOf("Content-Type" to "application/json"))
 
     companion object {
+        //instance to use in the classes
         val instance: Api by lazy { Holder.INSTANCE }
     }
 }

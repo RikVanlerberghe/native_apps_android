@@ -9,12 +9,12 @@ import com.example.rik.myapplication.domain.models.Player
 import com.example.rik.myapplication.domain.models.User
 
 class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1) {
-//TODO enkel player is hier nodig!! opkuisen
     companion object {
         private var instance: DBHelper? = null
 
         @Synchronized
         fun getInstance(ctx: Context): DBHelper {
+            //singleton for the database
             if (instance == null) {
                 instance = DBHelper(ctx.applicationContext)
             }
@@ -30,6 +30,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
+        //creates database if it doesn't exists
         val CREATE_CARD_TABLE = "CREATE TABLE card " + "(id Integer PRIMARY KEY, numberOfDrinksLeft Integer)"
         val CREATE_USER_TABLE = "CREATE TABLE user " + "(username TEXT PRIMARY KEY, password TEXT, home_balance Integer)"
         val CREATE_PLAYER_TABLE = "CREATE TABLE player " + "(name TEXT PRIMARY KEY, fifteen Integer, sixteen Integer, seventeen Integer, eighteen Integer, nineteen Integer, twenty Integer, bull Integer, score Integer)"
@@ -37,6 +38,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
     }
 
     fun getPlayers(): ArrayList<Player>{
+        //gets the players from the database
         val playerList = ArrayList<Player>()
         val db = readableDatabase
         val SELECT_PLAYERS = "SELECT * FROM player"
@@ -65,6 +67,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
     }
 
     fun addPlayer(player: Player): Boolean{
+        //adds a new player to the database
         getPlayers().forEach({
                 u -> if (u.name == player.name) {
             return error("player allready exists")
@@ -87,6 +90,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
     }
 
     fun deletePlayer(name: String): Boolean {
+        //deletes a player from the database
         val db = this.writableDatabase
         val _succes = db.delete("player", "name" + "=?", arrayOf(name)).toLong()
         db.close()
@@ -94,6 +98,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
     }
 
     fun updatePlayer(player: Player): Boolean{
+        //update player from the database (always if score changes)
         val db = this.writableDatabase
         val values = ContentValues()
         values.put("name", player.name)
@@ -111,6 +116,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
     }
 
     fun getPlayer(name: String): Player{
+        //gets player from the database
         getPlayers().forEach({
                 u -> if (u.name == name) {
                     return u
@@ -120,6 +126,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "database", null, 1
     }
 
     //nu niet nodig, maar komen misschien nog van pas
+
     /*
     fun getUsers(): ArrayList<User>{
         val userList = ArrayList<User>()

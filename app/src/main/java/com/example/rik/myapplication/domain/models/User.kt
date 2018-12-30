@@ -1,6 +1,7 @@
 package com.example.rik.myapplication.domain.models
 
 class User {
+    //User class
     var username: String = ""
     var password: String = ""
     var balance: Int = 0

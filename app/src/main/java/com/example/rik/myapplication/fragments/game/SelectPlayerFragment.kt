@@ -33,6 +33,7 @@ class SelectPlayerFragment: Fragment() {
         makeRecyclerList()
 
         val swipeHandler = object : SwipeToDeleteInterface(context) {
+            //deletes a player by swiping
             override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
                 try{
                     getMainActivity().getGroup().forEach {p ->
@@ -57,6 +58,7 @@ class SelectPlayerFragment: Fragment() {
     }
 
     private fun makeRecyclerList() {
+        //makes RecyclerList with the adapter
         adapterList = ArrayList()
         getMainActivity().db!!.getPlayers().forEach { player ->
             adapterList.add(player.name)
@@ -67,6 +69,7 @@ class SelectPlayerFragment: Fragment() {
     }
 
     private fun editAdapterList() {
+        //edit the adapterlist
         players.adapter = adapter
         adapter.notifyDataSetChanged()
         players.setHasFixedSize(true)
@@ -74,6 +77,7 @@ class SelectPlayerFragment: Fragment() {
     }
 
     private fun getMainActivity(): GameActivity {
+        //gets activity
         return activity as GameActivity
     }
 }

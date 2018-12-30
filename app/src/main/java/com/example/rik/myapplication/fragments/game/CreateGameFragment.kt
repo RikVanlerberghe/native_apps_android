@@ -42,7 +42,7 @@ class CreateGameFragment: Fragment() {
         }
 
         add_player.setOnClickListener {
-
+            //puts player in db and in the group
             try{
                 getMainActivity().db!!.addPlayer(Player(player_name.text.toString()))
                 adapterList.add(player_name.text.toString())
@@ -60,6 +60,7 @@ class CreateGameFragment: Fragment() {
         }
 
         val swipeHandler = object : SwipeToDeleteInterface(context) {
+            //deletes a player by swiping
             override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
                 adapterList.removeAt(p0.adapterPosition)
                 group.removeAt(p0.adapterPosition)
@@ -68,11 +69,13 @@ class CreateGameFragment: Fragment() {
             }
         }
 
+        //swipe delete
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
         itemTouchHelper.attachToRecyclerView(players)
     }
 
     private fun makeRecyclerList() {
+        //makes RecyclerList with the adapter
         adapterList = groupToAdapterList()
         adapter = CreateGameAdapter(context!!, this, adapterList)
         players.adapter = adapter
@@ -80,6 +83,7 @@ class CreateGameFragment: Fragment() {
     }
 
     private fun editAdapterList() {
+        //edits list
         players.adapter = adapter
         adapter.notifyDataSetChanged()
         players.setHasFixedSize(true)
@@ -87,8 +91,8 @@ class CreateGameFragment: Fragment() {
     }
 
     private fun groupToAdapterList(): MutableList<String>{
+        //changes group to adapterlist
         var playerNames : MutableList<String> = ArrayList()
-
         group.forEach {
             player -> playerNames.add(player.name)
         }
@@ -97,6 +101,7 @@ class CreateGameFragment: Fragment() {
     }
 
     private fun getMainActivity(): GameActivity {
+        //get the Activity
         return activity as GameActivity
     }
 }

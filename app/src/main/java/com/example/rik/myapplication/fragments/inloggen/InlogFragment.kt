@@ -25,6 +25,7 @@ class InlogFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //login onclicked
         inloggen.setOnClickListener {
             try{
                 if(username.text.toString().isEmpty() || password.text.toString().isEmpty()){
@@ -39,6 +40,7 @@ class InlogFragment: Fragment() {
     }
 
     private fun loginUser(){
+        //login function
         val request = Api.instance.login(username.text.toString(), password.text.toString())
         request.responseJson { request, response, result ->
             when(result){

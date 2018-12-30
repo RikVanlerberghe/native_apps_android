@@ -16,7 +16,7 @@ class PlayGameAdapter(internal var context: Context,
                       internal var fragment: PlayGameFragment,
                       internal var playerList: MutableList<Player>)
     : RecyclerView.Adapter<PlayGameViewHolder>() {
-
+    //handles most of the logic during the game
     lateinit var activity: GameActivity
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayGameViewHolder {
@@ -28,6 +28,7 @@ class PlayGameAdapter(internal var context: Context,
     override fun onBindViewHolder(holderCreate: PlayGameViewHolder, position: Int) {
         var member = playerList[position]
 
+        //set the scorebord on the correct images
         holderCreate.fifteen.setImageDrawable(selectImage(member.fifteen))
         holderCreate.sixteen.setImageDrawable(selectImage(member.sixteen))
         holderCreate.seventeen.setImageDrawable(selectImage(member.seventeen))
@@ -38,6 +39,7 @@ class PlayGameAdapter(internal var context: Context,
         holderCreate.score.text = member.score.toString()
         holderCreate.name.text = member.name
 
+        //logic for extra fifteen of player
         holderCreate.fifteen.setOnClickListener {
             if (member.fifteen < 3) {
                 member.fifteen++
@@ -54,6 +56,7 @@ class PlayGameAdapter(internal var context: Context,
             }
             checkIfWon(member)
         }
+        //logic for extra sixteen of player
         holderCreate.sixteen.setOnClickListener {
             if (member.sixteen < 3) {
                 member.sixteen++
@@ -70,6 +73,7 @@ class PlayGameAdapter(internal var context: Context,
             }
             checkIfWon(member)
         }
+        //logic for extra seventeen of player
         holderCreate.seventeen.setOnClickListener {
             if (member.seventeen < 3) {
                 member.seventeen++
@@ -86,6 +90,7 @@ class PlayGameAdapter(internal var context: Context,
             }
             checkIfWon(member)
         }
+        //logic for extra eighteen of player
         holderCreate.eighteen.setOnClickListener {
             if (member.eighteen < 3) {
                 member.eighteen++
@@ -102,6 +107,7 @@ class PlayGameAdapter(internal var context: Context,
             }
             checkIfWon(member)
         }
+        //logic for extra nineteen of player
         holderCreate.nineteen.setOnClickListener {
             if (member.nineteen < 3) {
                 member.nineteen++
@@ -118,6 +124,7 @@ class PlayGameAdapter(internal var context: Context,
             }
             checkIfWon(member)
         }
+        //logic for extra twenty of player
         holderCreate.twenty.setOnClickListener {
             if (member.twenty < 3) {
                 member.twenty++
@@ -134,6 +141,7 @@ class PlayGameAdapter(internal var context: Context,
             }
             checkIfWon(member)
         }
+        //logic for extra bull of player
         holderCreate.bull.setOnClickListener {
             if (member.bull < 3) {
                 member.bull++
@@ -157,6 +165,7 @@ class PlayGameAdapter(internal var context: Context,
         return playerList.size
     }
 
+    //checks if the player has won the game
     fun checkIfWon(member: Player) {
         if (member.fifteen.equals(3) &&
             member.sixteen.equals(3) &&
@@ -174,6 +183,8 @@ class PlayGameAdapter(internal var context: Context,
             activity.goTo("end_of_game")
         }
     }
+
+    //sets correct image on the scorebord
     fun selectImage(number: Int): Drawable? {
         when{
             number.equals(0) -> return ResourcesCompat.getDrawable(activity.resources, R.drawable.dart_null, null)

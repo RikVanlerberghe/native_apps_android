@@ -20,6 +20,7 @@ class PayCardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //order user to pay
         amountToPay.text = "You have to pay € " + getMainActivity().getAmountToPay()
 
         pay.setOnClickListener {

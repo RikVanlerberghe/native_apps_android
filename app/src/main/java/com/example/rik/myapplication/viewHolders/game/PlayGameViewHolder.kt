@@ -5,6 +5,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.game_item_scorebord.view.*
 
 class PlayGameViewHolder (itemView: View): RecyclerView.ViewHolder(itemView) {
+    //viewholder holds name and score
     val name = itemView.name
 
     val fifteen = itemView.fifteen

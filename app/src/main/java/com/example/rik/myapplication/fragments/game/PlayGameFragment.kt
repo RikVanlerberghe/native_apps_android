@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.game_item_scorebord.*
 
 class PlayGameFragment:Fragment() {
 
-    private lateinit var adapterList: MutableList<String>
     private lateinit var adapter: PlayGameAdapter
     private lateinit var group: ArrayList<Player>
 
@@ -35,19 +34,14 @@ class PlayGameFragment:Fragment() {
     }
 
     private fun makeRecyclerList() {
+        //makes RecyclerList with the adapter
         adapter = PlayGameAdapter(context!!, this, group)
         this.scorebord.adapter = adapter
         this.scorebord.layoutManager = LinearLayoutManager(context)
     }
 
-    private fun editAdapterList() {
-        scorebord.adapter = adapter
-        adapter.notifyDataSetChanged()
-        scorebord.setHasFixedSize(true)
-        scorebord.layoutManager = LinearLayoutManager(context)
-    }
-
     private fun getMainActivity(): GameActivity {
+        //gets activity
         return activity as GameActivity
     }
 }

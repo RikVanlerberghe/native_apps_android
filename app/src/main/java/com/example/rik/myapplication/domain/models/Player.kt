@@ -1,6 +1,7 @@
 package com.example.rik.myapplication.domain.models
 
 class Player {
+    //Player class for in the database, and the game
     var name: String = ""
     var fifteen: Int = 0
     var sixteen: Int = 0

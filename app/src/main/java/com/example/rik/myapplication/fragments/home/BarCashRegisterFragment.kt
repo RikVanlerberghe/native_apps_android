@@ -29,6 +29,7 @@ class BarCashRegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //gets balance from the barcachregister
         var request = Api.instance.getBarCashRegister("Barkas")
         request.responseJson { request, response, result ->
             when(result){
@@ -48,6 +49,7 @@ class BarCashRegisterFragment : Fragment() {
             }
         }
 
+        //update barcachregister
         confirm_change.setOnClickListener {
             try {
             var request = Api.instance.updateBarCashRegister("Barkas", new_budget.text.toString().toInt())

@@ -28,9 +28,10 @@ class EndOfGameFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        title.text = winner.name + " won the game!!!"
+        title.text = winner.name + ",\nwon the game!!!"
 
         reset_players.setOnClickListener {
+            //all players socres are reset after a game
             group.forEach { player ->
                 player.score = 0
                 player.fifteen =0
@@ -48,6 +49,7 @@ class EndOfGameFragment: Fragment() {
     }
 
     private fun getMainActivity(): GameActivity {
+        //get the activity
         return activity as GameActivity
     }
 }

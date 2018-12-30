@@ -32,6 +32,7 @@ class RegistreerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //register onclicked
         registreren.setOnClickListener {
             if(reg_username.text.toString().isEmpty() || reg_password.text.toString().isEmpty() || password_confirm.text.toString().isEmpty()){
                 Snackbar.make(view, "not all fields are filled", Snackbar.LENGTH_LONG).show()
@@ -46,6 +47,7 @@ class RegistreerFragment : Fragment() {
     }
 
     fun checkUserName(input: String){
+        //checkusername function
         val request = Api.instance.checkUsername(input)
         request.responseJson { request, response, result ->
             when(result) {
@@ -67,6 +69,7 @@ class RegistreerFragment : Fragment() {
     }
 
     private fun createUser(user: User){
+        //register function, creates new user
         val request = Api.instance.createUser(user)
         request.responseJson { request, response, result ->
             when (result) {

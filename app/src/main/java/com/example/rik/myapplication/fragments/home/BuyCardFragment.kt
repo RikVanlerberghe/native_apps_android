@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.buy_card.*
 
 class BuyCardFragment : Fragment() {
 
-    //number of cards to order
     private lateinit var username: String
     private lateinit var budget: String
     private var addToBudget: Int = 5
@@ -29,6 +28,8 @@ class BuyCardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //get user
         var user = getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE).getString("username", "niet ingelogd")
         var request = Api.instance.getUser(user)
         request.responseJson { request, response, result ->
@@ -53,6 +54,8 @@ class BuyCardFragment : Fragment() {
             addToBudget -= 5
             quantity.setText(addToBudget.toString())
         }
+
+        //update user balance
         confirm.setOnClickListener {
             try {
                 var x = budget.toDouble()

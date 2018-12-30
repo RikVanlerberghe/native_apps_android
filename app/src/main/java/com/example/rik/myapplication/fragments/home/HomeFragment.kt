@@ -21,6 +21,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //check if user is logged in
         if(getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE) == null || getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE).getString("username", "niet ingelogd").equals("")){
             try {
                 Snackbar.make(view, "You are not logged in", Snackbar.LENGTH_LONG).show()
