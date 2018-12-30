@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.rik.myapplication.R
 
-class InfoFragment : Fragment() {
+class InfoMainFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.settings_info, container, false)
+        val view = inflater.inflate(R.layout.settings_info_main, container, false)
         return view
     }
 }

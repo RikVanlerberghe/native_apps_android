@@ -45,7 +45,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.502"/>
     <Button
-            android:text="Button"
+            android:text="Confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"

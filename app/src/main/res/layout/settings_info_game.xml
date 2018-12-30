@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/title"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:src="@drawable/ic_info_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textView2"/>
+    <TextView
+            android:text="Cricket:\n\nselect players in the player view or add them on the bottom of the screen. Then start the game.\n\nThe object is to close numbers 15 through 20 and the bulls eye by hitting them each three times before your opponent. Once a number is closed, you can then score points each time it is hit while your opponent is still trying to close it. Each team takes turns throwing three darts."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:id="@+id/textView2"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

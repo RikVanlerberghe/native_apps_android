@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -15,12 +14,11 @@ import com.example.rik.myapplication.R
 import com.example.rik.myapplication.R.id.*
 import com.example.rik.myapplication.database.sqlite.DBHelper
 import com.example.rik.myapplication.domain.models.Player
-import com.example.rik.myapplication.fragments.home.BalanceFragment
 import com.example.rik.myapplication.fragments.game.CreateGameFragment
 import com.example.rik.myapplication.fragments.game.EndOfGameFragment
 import com.example.rik.myapplication.fragments.game.PlayGameFragment
 import com.example.rik.myapplication.fragments.game.SelectPlayerFragment
-import com.example.rik.myapplication.fragments.settings.InfoFragment
+import com.example.rik.myapplication.fragments.settings.InfoGameFragment
 import com.example.rik.myapplication.fragments.settings.SettingsFragment
 
 import kotlinx.android.synthetic.main.activity_game.*
@@ -77,8 +75,8 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragment = SettingsFragment()
                 currentFragmentTag = fragmentName
             }
-            "settings_info" -> {
-                fragment = InfoFragment()
+            "settings_info_game" -> {
+                fragment = InfoGameFragment()
                 currentFragmentTag = fragmentName
             }
             //game fragments
@@ -107,11 +105,11 @@ class GameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
-            R.id.action_settings -> {
+            /*R.id.action_settings -> {
                 goTo("settings_settings")
-            }
+            }*/
             R.id.action_info -> {
-                goTo("settings_info")
+                goTo("settings_info_game")
             }
             R.id.action_logOff -> {
                 val editor = getSharedPreferences("myPref", Context.MODE_PRIVATE)

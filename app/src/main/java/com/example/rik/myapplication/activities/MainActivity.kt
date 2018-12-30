@@ -11,19 +11,15 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import com.example.rik.myapplication.R
 import com.example.rik.myapplication.database.sqlite.DBHelper
-import com.example.rik.myapplication.domain.models.Player
 import com.example.rik.myapplication.fragments.home.*
 import com.example.rik.myapplication.fragments.inloggen.InlogFragment
 import com.example.rik.myapplication.fragments.inloggen.RegistreerFragment
-import com.example.rik.myapplication.fragments.settings.InfoFragment
+import com.example.rik.myapplication.fragments.settings.InfoMainFragment
 import com.example.rik.myapplication.fragments.settings.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.buy_pay_card.*
-import kotlinx.android.synthetic.main.content_game.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -85,8 +81,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragment = SettingsFragment()
                 currentFragmentTag = fragmentName
             }
-            "settings_info" -> {
-                fragment = InfoFragment()
+            "settings_info_main" -> {
+                fragment = InfoMainFragment()
                 currentFragmentTag = fragmentName
             }
             "buyCard" -> {
@@ -135,11 +131,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
-            R.id.action_settings -> {
+            /*R.id.action_settings -> {
                 goTo("settings_settings")
-            }
+            }*/
             R.id.action_info -> {
-                goTo("settings_info")
+                goTo("settings_info_main")
             }
             R.id.action_logOff -> {
                 val editor = getSharedPreferences("myPref", Context.MODE_PRIVATE)
