@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:layout_height="match_parent">
     <TextView
             android:id="@+id/title_home"
@@ -13,7 +13,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.50"/>
+            app:layout_constraintHorizontal_bias="0.50"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"/>
 
     <ImageView
             android:id="@+id/imageView"
@@ -26,24 +27,45 @@
             android:layout_marginTop="1dp"
             app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
-            android:id="@+id/buy_card"
-            android:text="card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/buy_drink"
-            app:layout_constraintTop_toBottomOf="@+id/title_home"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <Button
-            android:id="@+id/buy_drink"
-            android:text="drink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/title_home"
-            app:layout_constraintStart_toEndOf="@id/buy_card"
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="152dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_home"
+            app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/linearLayout">
+
+        <ImageButton
+                android:id="@+id/buy_card"
+                android:src="@drawable/ic_pig_icon"
+                android:layout_width="0dp"
+                android:layout_weight="0.50"
+                android:layout_margin="20dp"
+                android:scaleType="fitCenter"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toStartOf="@+id/buy_drink"
+                app:layout_constraintTop_toBottomOf="@+id/title_home"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        <ImageButton
+                android:id="@+id/buy_drink"
+                android:src="@drawable/ic_beer_icon"
+                android:layout_width="0dp"
+                android:layout_weight="0.50"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:scaleType="fitCenter"
+                android:background="?android:attr/selectableItemBackground"
+                app:layout_constraintTop_toBottomOf="@+id/title_home"
+                app:layout_constraintStart_toEndOf="@id/buy_card"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
