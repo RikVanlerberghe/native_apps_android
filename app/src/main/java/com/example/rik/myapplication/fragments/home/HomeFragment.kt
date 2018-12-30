@@ -2,6 +2,7 @@ package com.example.rik.myapplication.fragments.home
 
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,9 +21,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE) != null){
-            var x = getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE).getString("username", "niet ingelogd")
-            title_home.text = x
+        if(getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE) == null || getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE).getString("username", "niet ingelogd").equals("")){
+            Snackbar.make(this.view!!, "You are not logged in", Snackbar.LENGTH_LONG).show()
         }
         //goTo buy card
         buy_card.setOnClickListener {

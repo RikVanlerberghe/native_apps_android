@@ -27,6 +27,10 @@ class BalanceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if(getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE) == null || getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE).getString("username", "niet ingelogd").equals("")){
+            Snackbar.make(this.view!!, "You are not logged in", Snackbar.LENGTH_LONG).show()
+        }
+
         var name = getMainActivity().getSharedPreferences("myPref", Context.MODE_PRIVATE).getString("username", "niet ingelogd")
         var request = Api.instance.getUser(name)
         request.responseJson { request, response, result ->

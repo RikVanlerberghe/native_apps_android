@@ -27,11 +27,6 @@ class PayCardFragment : Fragment() {
         }
     }
 
-    fun onBackPressed(){
-        Snackbar.make(this.view!!, "You have to pay first", Snackbar.LENGTH_LONG).show()
-
-    }
-
     private fun getMainActivity(): MainActivity {
         return activity as MainActivity
     }
