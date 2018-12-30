@@ -1,6 +1,8 @@
 package com.example.rik.myapplication.adapters.game
 
 import android.content.Context
+import android.graphics.drawable.Drawable
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -26,13 +28,13 @@ class PlayGameAdapter(internal var context: Context,
     override fun onBindViewHolder(holderCreate: PlayGameViewHolder, position: Int) {
         var member = playerList[position]
 
-        holderCreate.fifteen.text = member.fifteen.toString()
-        holderCreate.sixteen.text = member.sixteen.toString()
-        holderCreate.seventeen.text = member.seventeen.toString()
-        holderCreate.eighteen.text = member.eighteen.toString()
-        holderCreate.nineteen.text = member.nineteen.toString()
-        holderCreate.twenty.text = member.twenty.toString()
-        holderCreate.bull.text = member.bull.toString()
+        holderCreate.fifteen.setImageDrawable(selectImage(member.fifteen))
+        holderCreate.sixteen.setImageDrawable(selectImage(member.sixteen))
+        holderCreate.seventeen.setImageDrawable(selectImage(member.seventeen))
+        holderCreate.eighteen.setImageDrawable(selectImage(member.eighteen))
+        holderCreate.nineteen.setImageDrawable(selectImage(member.nineteen))
+        holderCreate.twenty.setImageDrawable(selectImage(member.twenty))
+        holderCreate.bull.setImageDrawable(selectImage(member.bull))
         holderCreate.score.text = member.score.toString()
         holderCreate.name.text = member.name
 
@@ -40,7 +42,7 @@ class PlayGameAdapter(internal var context: Context,
             if (member.fifteen < 3) {
                 member.fifteen++
                 activity.db!!.updatePlayer(member)
-                holderCreate.fifteen.text = member.fifteen.toString()
+                holderCreate.fifteen.setImageDrawable(selectImage(member.fifteen))
             } else {
                 playerList.forEach { p ->
                     if (p.fifteen < 3) {
@@ -56,7 +58,7 @@ class PlayGameAdapter(internal var context: Context,
             if (member.sixteen < 3) {
                 member.sixteen++
                 activity.db!!.updatePlayer(member)
-                holderCreate.sixteen.text = member.sixteen.toString()
+                holderCreate.sixteen.setImageDrawable(selectImage(member.sixteen))
             } else {
                 playerList.forEach { p ->
                     if (p.sixteen < 3) {
@@ -72,7 +74,7 @@ class PlayGameAdapter(internal var context: Context,
             if (member.seventeen < 3) {
                 member.seventeen++
                 activity.db!!.updatePlayer(member)
-                holderCreate.seventeen.text = member.seventeen.toString()
+                holderCreate.seventeen.setImageDrawable(selectImage(member.seventeen))
             } else {
                 playerList.forEach { p ->
                     if (p.seventeen < 3) {
@@ -88,7 +90,7 @@ class PlayGameAdapter(internal var context: Context,
             if (member.eighteen < 3) {
                 member.eighteen++
                 activity.db!!.updatePlayer(member)
-                holderCreate.eighteen.text = member.eighteen.toString()
+                holderCreate.eighteen.setImageDrawable(selectImage(member.eighteen))
             } else {
                 playerList.forEach { p ->
                     if (p.eighteen < 3) {
@@ -104,7 +106,7 @@ class PlayGameAdapter(internal var context: Context,
             if (member.nineteen < 3) {
                 member.nineteen++
                 activity.db!!.updatePlayer(member)
-                holderCreate.nineteen.text = member.nineteen.toString()
+                holderCreate.nineteen.setImageDrawable(selectImage(member.nineteen))
             } else {
                 playerList.forEach { p ->
                     if (p.nineteen < 3) {
@@ -120,7 +122,7 @@ class PlayGameAdapter(internal var context: Context,
             if (member.twenty < 3) {
                 member.twenty++
                 activity.db!!.updatePlayer(member)
-                holderCreate.twenty.text = member.twenty.toString()
+                holderCreate.twenty.setImageDrawable(selectImage(member.twenty))
             } else {
                 playerList.forEach { p ->
                     if (p.twenty < 3) {
@@ -136,7 +138,7 @@ class PlayGameAdapter(internal var context: Context,
             if (member.bull < 3) {
                 member.bull++
                 activity.db!!.updatePlayer(member)
-                holderCreate.bull.text = member.bull.toString()
+                holderCreate.bull.setImageDrawable(selectImage(member.bull))
             } else {
                 playerList.forEach { p ->
                     if (p.bull < 3) {
@@ -170,6 +172,15 @@ class PlayGameAdapter(internal var context: Context,
             }
             activity.setWinner(member)
             activity.goTo("end_of_game")
+        }
+    }
+    fun selectImage(number: Int): Drawable? {
+        when{
+            number.equals(0) -> return ResourcesCompat.getDrawable(activity.resources, R.drawable.dart_null, null)
+            number.equals(1) -> return ResourcesCompat.getDrawable(activity.resources, R.drawable.dart_first, null)
+            number.equals(2) -> return ResourcesCompat.getDrawable(activity.resources, R.drawable.dart_second, null)
+            number.equals(3) -> return ResourcesCompat.getDrawable(activity.resources, R.drawable.dart_third, null)
+            else -> return ResourcesCompat.getDrawable(activity.resources, R.drawable.dart_null, null)
         }
     }
 }

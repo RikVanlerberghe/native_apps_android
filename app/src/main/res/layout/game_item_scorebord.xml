@@ -29,46 +29,67 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_weight=".24"/>
-            <Button
-                    android:id="@+id/fifteen"
-                    android:text="15"
+            <ImageButton
+                    android:id="@+id/twenty"
+                    android:src="@drawable/dart_null"
+                    android:layout_margin="1dp"
+                    android:scaleType="fitCenter"
+                    android:background="@color/white"
                     android:layout_width="0dp"
                     android:layout_weight=".08"
                     android:layout_height="match_parent"
                     android:layout_alignParentStart="true"/>
-            <Button
-                    android:id="@+id/sixteen"
-                    android:text="16"
-                    android:layout_width="0dp"
-                    android:layout_weight=".08"
-                    android:layout_height="match_parent"/>
-            <Button
-                    android:id="@+id/seventeen"
-                    android:text="17"
-                    android:layout_width="0dp"
-                    android:layout_weight=".08"
-                    android:layout_height="match_parent"/>
-            <Button
-                    android:id="@+id/eighteen"
-                    android:text="18"
-                    android:layout_width="0dp"
-                    android:layout_weight=".08"
-                    android:layout_height="match_parent"/>
-            <Button
+            <ImageButton
                     android:id="@+id/nineteen"
-                    android:text="19"
+                    android:src="@drawable/dart_null"
+                    android:layout_margin="1dp"
+                    android:scaleType="fitCenter"
+                    android:background="@color/white"
                     android:layout_width="0dp"
                     android:layout_weight=".08"
                     android:layout_height="match_parent"/>
-            <Button
-                    android:id="@+id/twenty"
-                    android:text="20"
+            <ImageButton
+                    android:id="@+id/eighteen"
+                    android:src="@drawable/dart_null"
+                    android:layout_margin="1dp"
+                    android:scaleType="fitCenter"
+                    android:background="@color/white"
                     android:layout_width="0dp"
                     android:layout_weight=".08"
                     android:layout_height="match_parent"/>
-            <Button
+            <ImageButton
+                    android:id="@+id/seventeen"
+                    android:src="@drawable/dart_null"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="1dp"
+                    android:background="@color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight=".08"
+                    android:layout_height="match_parent"/>
+            <ImageButton
+                    android:id="@+id/sixteen"
+                    android:src="@drawable/dart_null"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="1dp"
+                    android:background="@color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight=".08"
+                    android:layout_height="match_parent"/>
+            <ImageButton
+                    android:id="@+id/fifteen"
+                    android:src="@drawable/dart_null"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="1dp"
+                    android:background="@color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight=".08"
+                    android:layout_height="match_parent"/>
+            <ImageButton
                     android:id="@+id/bull"
-                    android:text="bull"
+                    android:src="@drawable/dart_null"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="1dp"
+                    android:background="@color/white"
                     android:layout_width="0dp"
                     android:layout_weight=".08"
                     android:layout_height="match_parent"/>

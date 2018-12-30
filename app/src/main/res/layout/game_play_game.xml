@@ -48,24 +48,17 @@
                 android:textStyle="bold"
                 android:layout_weight=".24"/>
         <TextView
-                android:id="@+id/fifteen"
+                android:id="@+id/twenty"
                 android:textColor="@color/white"
-                android:text="15"
+                android:text="20"
                 android:layout_width="0dp"
                 android:layout_weight=".08"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"/>
         <TextView
-                android:id="@+id/sixteen"
+                android:id="@+id/nineteen"
                 android:textColor="@color/white"
-                android:text="16"
-                android:layout_width="0dp"
-                android:layout_weight=".08"
-                android:layout_height="match_parent"/>
-        <TextView
-                android:id="@+id/seventeen"
-                android:textColor="@color/white"
-                android:text="17"
+                android:text="19"
                 android:layout_width="0dp"
                 android:layout_weight=".08"
                 android:layout_height="match_parent"/>
@@ -77,16 +70,23 @@
                 android:layout_weight=".08"
                 android:layout_height="match_parent"/>
         <TextView
-                android:id="@+id/nineteen"
+                android:id="@+id/seventeen"
                 android:textColor="@color/white"
-                android:text="19"
+                android:text="17"
                 android:layout_width="0dp"
                 android:layout_weight=".08"
                 android:layout_height="match_parent"/>
         <TextView
-                android:id="@+id/twenty"
+                android:id="@+id/sixteen"
                 android:textColor="@color/white"
-                android:text="20"
+                android:text="16"
+                android:layout_width="0dp"
+                android:layout_weight=".08"
+                android:layout_height="match_parent"/>
+        <TextView
+                android:id="@+id/fifteen"
+                android:textColor="@color/white"
+                android:text="15"
                 android:layout_width="0dp"
                 android:layout_weight=".08"
                 android:layout_height="match_parent"/>
