@@ -15,7 +15,8 @@ class Api private constructor() {
 
     init {
         //only local for now, this has to be changed if backend runs online
-        FuelManager.instance.basePath = "http://10.0.2.2:5000/api"
+        FuelManager.instance.basePath = "http://scoutsappbackend.westeurope.cloudapp.azure.com/api"
+        //"http://10.0.2.2:5000/api"
     }
 
     //functions do as the names imply
